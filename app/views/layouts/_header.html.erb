@@ -2,13 +2,21 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<nav>
-				<%= link_to image_tag("nhrlogo.jpg", alt: "New Haven Reads", size: "150x100"), root_path %>
+				<%= link_to "New Haven Reads", root_path, id: "logo" %>
 				<ul class="nav pull-right">
 					<li><%= link_to "Home", root_path %></li>
 					<li class="divider-vertical"></li>
-					<li><%= link_to "Sign in", '#' %></li>
+					  <% if user_signed_in? %>
+   					    Signed in as <%= current_user.email %>.
+    				    <li><%= link_to "Sign out", destroy_user_session_path %></li>
+  					  <% else %>
+    					<li><%= link_to "Sign in", new_user_session_path %></li>
+ 					  <% end %>
 				</ul>
 			</nav>
 		</div>
 	</div>
 </header>
+
+<!-- image for header: image_tag("nhrlogo.jpg", alt: "New Haven Reads", size: "150x100") -->
+<!-- TODO: change the background of the picture to black -->

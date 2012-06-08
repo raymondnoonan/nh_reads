@@ -1,5 +1,7 @@
 Nhreads::Application.routes.draw do
 
+  devise_for :users
+
   root to: 'static_pages#home'              # Home page
 
   match '/about', to: 'static_pages#about'  # Page with more information on NH Reads,
