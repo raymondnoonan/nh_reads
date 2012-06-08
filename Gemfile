@@ -6,6 +6,7 @@ gem 'bootstrap-sass'
 gem 'bcrypt-ruby'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'devise'
 
 group :test do
 	gem 'rspec-rails'
@@ -18,6 +19,7 @@ end
 group :development do
 	gem 'rspec-rails'
 	gem 'guard-rspec'
+	gem 'annotate'
 end
 
 # Gems used only for assets and not required
