@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NH Reads Book Center | <%= yield(:title) %></title>
+  <%= render 'layouts/random' %>
+</head>
+<body>
+<<<<<<< HEAD
+<%= render 'layouts/header' %>
+<%= yield %>
+<%= render 'layouts/footer' %>
+=======
+  <%= render 'layouts/header' %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+>>>>>>> structure-and-style
+</body>
+</html>
