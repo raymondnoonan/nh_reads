@@ -8,7 +8,7 @@ This is an application for [New Haven Reads](http://newhavenreads.org). Its purp
 
 Upon visiting the website, a not-signed-up (and therefore not-signed-in) User will be greeted with a welcome message and two large buttons: "Sign in" and "Sign Up".
 
-When signing up, besides picking an email and password, a User will also pick an initial organization to be a part of. An email will be sent to that organization's director confirming that the User is indeed a part of that organization. Once membership is confirmed, the User may log on
+When signing up, besides picking an email and password, a User will also pick an initial organization to be a part of. An email will be sent to that organization's director confirming that the User is indeed a part of that organization. Once membership is confirmed, the User may log on and see his or her past and current orders, as well as an option to create a new one. 
 
 - - - 
 
