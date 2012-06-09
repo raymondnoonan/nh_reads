@@ -1,6 +1,8 @@
 @import "bootstrap";
 
 /* custom colors */
+$skyBlue: #3BB9FF;
+$goodOrange: #ff7f3b;
 
 /* universal */
 
@@ -52,6 +54,21 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  line-height: 1;
+  font-family: cursive;
+  &:hover {
+    color: $goodOrange;
+    text-decoration: none;
+  }
 }
 
 /* TODO: Buttons */
