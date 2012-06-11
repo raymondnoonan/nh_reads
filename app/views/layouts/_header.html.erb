@@ -8,8 +8,10 @@
 					<li><%= link_to "Home", root_path %></li>
 					<li class="divider-vertical"></li>
 					  <% if user_signed_in? %>
-   					    Signed in as <%= current_user.email %>.
-    				    <li><%= link_to "Sign out", destroy_user_session_path %></li>
+					  	<li><%= link_to "Settings", '#', method: :get %></li>
+					  	<li class="divider-vertical"></li>
+					    <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+					    <li class="divider-vertical"></li>
   					  <% end %>
 				</ul>
 			</nav>

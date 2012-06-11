@@ -1,6 +1,9 @@
 Nhreads::Application.routes.draw do
 
+  get "users/new"
+
   devise_for :users
+  resources :users, only: [:show, :edit, :update]
 
   root to: 'static_pages#home'              # Home page
 

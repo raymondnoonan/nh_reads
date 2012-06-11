@@ -34,16 +34,16 @@ describe User do
   it { should be_valid }
 
   # Validations
-    describe "validations" do
-  	    describe "when name is blank" do  # Name
-  		  before { user.name = " " }    # Must do custom validations because not a part of devise
-  		  it { should_not be_valid }
-   	    end
+#    describe "validations" do
+#  	    describe "when name is blank" do  # Name
+#  		  before { user.name = " " }        # Must do custom validations because not a part of devise
+#  		  it { should_not be_valid }
+#   	    end
 
-  	    describe "when name is too long" do
-  		  before { user.name = "a" * 51 }
-  		  it { should_not be_valid }
-  	    end
+#  	    describe "when name is too long" do
+#  		  before { user.name = "a" * 51 }
+#  		  it { should_not be_valid }
+#  	    end
 
    	    describe "when email is blank" do # Email
   		  before { user.email = " " }
@@ -67,5 +67,5 @@ describe User do
 #  			    end
 #  		    end
 #  	    end
-    end
+#    end
 end
