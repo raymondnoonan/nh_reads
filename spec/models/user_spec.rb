@@ -25,47 +25,39 @@
 require 'spec_helper'
 
 describe User do
-  let!(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user) }
   subject { user }
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  it { should respond_to(:orders) }
 
   it { should be_valid }
 
-  # Validations
-#    describe "validations" do
-#  	    describe "when name is blank" do  # Name
-#  		  before { user.name = " " }        # Must do custom validations because not a part of devise
-#  		  it { should_not be_valid }
-#   	    end
+  describe "when email is blank" do
+    before { user.email = " " }
+    it { should_not be_valid }
+  end
 
-#  	    describe "when name is too long" do
-#  		  before { user.name = "a" * 51 }
-#  		  it { should_not be_valid }
-#  	    end
+  describe "order associations" do
+    before { user.save }
+    let!(:older_order) do
+      FactoryGirl.create(:order)
+    end
+    let!(:newer_order) do
+      FactoryGirl.create(:order)
+    end
 
-   	    describe "when email is blank" do # Email
-  		  before { user.email = " " }
-  		  it { should_not be_valid }
-  	    end
-
-#  	    describe "when email format is invalid" do
-#  		  addresses = %w[user@foo,com user_at_foo.org example.user@foo.foo@bar_baz.com foo@bar+baz.com]
-#  		  addresses.each do |bad_address|
-#  			  user.email = bad_address
-#  			  user.should_not be_valid
-#  		    end
-#  	    end
-
-#  	    describe "when email format is valid" do
-#  		    describe "it should be valid" do
-#  			    addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
-#  			    addresses.each do |good_address|
-#  				  user.email = good_address
-#  				  user.should be_valid
-#  			    end
-#  		    end
-#  	    end
+#    it "should have the correct orders in the right order" do  # checks order of posts
+#      user.orders.should == [newer_order, older_order]
 #    end
+
+    it "should destroy associated orders on deletion" do
+      orders = user.orders
+      user.destroy
+      orders.each do |order|
+        Order.find_by_id(order.id).should be_nil
+      end
+    end
+  end
 end

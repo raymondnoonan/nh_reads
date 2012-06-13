@@ -1,0 +1,25 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="span3">
+  	<section>
+	  	<%= @user.name %>
+		<%= @user.email %>
+	</section>
+	<section>
+		<ul class="nav nav-list">
+		  <li><%= link_to "New order", '#' %></li>
+		  <li><%= link_to "Past orders", '#' %></li>
+		  <li><%= link_to "Analytics", '#' %></li>
+		  <li><%= link_to "Settings", '#' %></li>
+		</ul>
+	</section>
+  </aside>
+  <!-- <div class="span9">
+  	 <% if @user.orders.any? %>
+  	  <table class="orders">
+  	  	<%= render @orders %>
+  	  </table>
+  	  <%= will_paginate @orders %>
+  	<% end %>
+  </div> -->
+</div>

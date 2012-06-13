@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-before_filter :authenticate_user! :except => [:new]
+before_filter :authenticate_user!
 
-  def new
+  def show
+    @user = User.find(params[:id])
   end
 
   def edit
