@@ -9,25 +9,24 @@ describe "Static pages" do
 
 	describe "Home page" do
 		before { visit root_path }
-		let(:heading) { 'Welcome to the New Haven Reads Book Center' }
-		let(:title)   { 'Home' }
+		let(:user) { FactoryGirl.create(:user) }
+		
+		describe "not signed in" do
+		  let(:heading) { 'Welcome to the New Haven Reads Book Center' }
+		  let(:title)   { 'Home' }
 
-		it_should_behave_like "all static pages"
+		  it_should_behave_like "all static pages"
+		end
+
+		describe "signed in" do
+		  before do
+		    visit new_user_session_path
+	        fill_in "Email", with: user.email
+	        fill_in "Password", with: user.password
+	        click_button "Sign in"
+	      end
+
+	      it { should have_content('Home') }
+	    end
 	end
-
-	describe "About page" do
-		before { visit about_path }
-		let(:heading) { "About us" }
-		let(:title) { "About" }
-
-		it_should_behave_like "all static pages"
-	end
-
-#	describe "Help page" do
-#		before { visit help_path }
-#		let(:heading) { "Frequently Asked Questions" }
-#		let(:title) { "Help and FAQ" }
-#
-#		it_should_behave_like "all static pages"
-#	end
 end

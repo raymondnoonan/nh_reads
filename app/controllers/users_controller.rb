@@ -7,6 +7,7 @@ before_filter :authenticate_user!
 
   def edit
   	@user = User.find(params[:id])
+    @orders = User.orders.paginate(page: params[:page])
   end
 
   def update

@@ -13,13 +13,9 @@
 		  <li><%= link_to "Settings", '#' %></li>
 		</ul>
 	</section>
+	<section>
+		<%= render 'shared/order_form' %>
+	</section>
   </aside>
-  <!-- <div class="span9">
-  	 <% if @user.orders.any? %>
-  	  <table class="orders">
-  	  	<%= render @orders %>
-  	  </table>
-  	  <%= will_paginate @orders %>
-  	<% end %>
-  </div> -->
+  <!-- TODO: put paginated orders here -->
 </div>

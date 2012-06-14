@@ -4,9 +4,6 @@ Nhreads::Application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   root to: 'static_pages#home'              # Home page
 
-  match '/about', to: 'static_pages#about'  # Page with more information on NH Reads,
-                                            # as well as an FAQ
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
