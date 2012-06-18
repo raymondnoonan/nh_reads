@@ -7,6 +7,7 @@ gem 'bcrypt-ruby'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'devise'
+gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 
 group :test do
 	gem 'rspec-rails'

@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "User pages" do 
 	let(:user) { FactoryGirl.create(:user) }
+	let!(:order_1) { FactoryGirl.create(:order) }
+	let!(:order_2) { FactoryGirl.create(:order) }
 	subject { page }
 
 	describe "authorization" do
@@ -25,6 +27,15 @@ describe "User pages" do
 	    describe "Profile page" do
 	      before { visit user_path(user) }
 		  it { should have_content(user.email) }
+	    end
+
+	    describe "displaying orders" do
+	    	it "should display the correct attributes of the orders" do
+	    	  user.orders.each do |order|
+	    	  	page.should have_selector('td', content: order.eta)
+	    	  	page.should have_selector('td', content: order.created_at)
+	    	  end
+	    	end
 	    end
       end
     end

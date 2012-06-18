@@ -2,20 +2,21 @@
 <div class="row">
   <aside class="span3">
   	<section>
+  		<!-- Basic user information -->
 	  	<%= @user.name %>
 		<%= @user.email %>
 	</section>
 	<section>
+		<!-- Navigation -->
 		<ul class="nav nav-list">
-		  <li><%= link_to "New order", '#' %></li>
+		  <li><%= link_to "New order", new_order_path %></li>
 		  <li><%= link_to "Past orders", '#' %></li>
-		  <li><%= link_to "Analytics", '#' %></li>
-		  <li><%= link_to "Settings", '#' %></li>
+		  <li><%= link_to "Statistics", '#' %></li>
 		</ul>
 	</section>
-	<section>
-		<%= render 'shared/order_form' %>
-	</section>
   </aside>
-  <!-- TODO: put paginated orders here -->
+  <h1>Current Orders</h1>
+  <div class="span9">
+	<%= render 'display_orders' %>
+  </div>
 </div>

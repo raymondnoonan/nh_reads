@@ -12,6 +12,7 @@
 class Order < ActiveRecord::Base
   attr_accessible :eta
   belongs_to :user
+  default_scope order: 'orders.created_at DESC'
 
   validates :user_id, presence: true
   validates :eta, presence: true

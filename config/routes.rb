@@ -2,6 +2,7 @@ Nhreads::Application.routes.draw do
 
   devise_for :users
   resources :users, only: [:show, :edit, :update]
+  resources :orders
   root to: 'static_pages#home'              # Home page
 
   # The priority is based upon order of creation:
