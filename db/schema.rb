@@ -11,16 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612164732) do
+ActiveRecord::Schema.define(:version => 20120619145544) do
 
-  create_table "orders", :force => true do |t|
-    t.integer  "user_id"
-    t.datetime "eta"
+  create_table "line_items", :force => true do |t|
+    t.integer  "order_id"
+    t.integer  "quantity"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  add_index "line_items", ["order_id"], :name => "index_line_items_on_order_id"
+  add_index "line_items", ["quantity"], :name => "index_line_items_on_quantity"
+
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "eta"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "completed",  :default => false
+  end
+
   add_index "orders", ["user_id", "created_at"], :name => "index_orders_on_user_id_and_created_at"
+
+  create_table "organizations", :force => true do |t|
+    t.string   "name"
+    t.string   "address_street"
+    t.string   "address_town"
+    t.string   "address_state"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -40,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20120612164732) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
+    t.integer  "organization_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

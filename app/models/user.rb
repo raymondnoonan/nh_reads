@@ -20,6 +20,7 @@
 #  created_at             :datetime        not null
 #  updated_at             :datetime        not null
 #  name                   :string(255)
+#  organization_id        :integer
 #
 
 class User < ActiveRecord::Base
@@ -29,6 +30,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :orders, dependent: :destroy
+  belongs_to :organization
 
   before_save { |user| user.email = email.downcase }
 
@@ -36,5 +38,6 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   
   # Custom validations
-  # validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true
+  validates :organization_id, presence: true
 end

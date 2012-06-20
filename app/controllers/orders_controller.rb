@@ -3,5 +3,7 @@ class OrdersController < ApplicationController
 
 	def new
 		@user = current_user
+		@order = Order.new
+		@line_items = LineItem.new
 	end
 end

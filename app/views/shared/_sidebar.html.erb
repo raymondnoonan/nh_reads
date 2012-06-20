@@ -1,0 +1,17 @@
+<div class="span4">
+  <aside class="span3">
+    <section>
+      <!-- Basic user information -->
+      <%= @user.organization.name %></br>
+	  <%= @user.name %>
+      <%= @user.email %>
+    </section>
+    <section>
+      <ul class="nav nav-list">
+        <li><%= link_to "New order", new_order_path %></li>
+        <li><%= link_to "Past orders", '#' %></li>
+        <li><%= link_to "Statistics", '#' %></li>
+      </ul>
+    </section>
+  </aside>
+</div>

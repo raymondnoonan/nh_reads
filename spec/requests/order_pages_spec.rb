@@ -19,7 +19,7 @@ describe "Order pages" do
       end
 
 	  describe "creating a new order" do
-		before { visit new_order_path(user) }
+		before { visit new_order_path }
 
 		it { should have_selector('title', text: 'New Order') }
 	  end

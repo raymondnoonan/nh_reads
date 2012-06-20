@@ -7,32 +7,38 @@
 #  eta        :datetime
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
+#  completed  :boolean         default(FALSE)
 #
 
 require 'spec_helper'
 
 describe Order do
   let(:user) { FactoryGirl.create(:user) }
-  before do
-  	@order = user.orders.build(eta: Time.now)
-  end
+  let(:order) { FactoryGirl.create(:order, user: user) }
 
-  subject { @order }
+  subject { order }
 
   it { should respond_to(:eta) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
+  it { should respond_to(:line_item) }
+  it { should respond_to(:completed) }
   its(:user) { should == user }
 
   it { should be_valid }
 
   describe "when user_id is not present" do
-  	before { @order.user_id = nil }
+  	before { order.user_id = nil }
   	it { should_not be_valid }
   end
 
   describe "when eta is not present" do
-    before { @order.eta = nil }
+    before { order.eta = nil }
+    it { should_not be_valid }
+  end
+
+  describe "when completed is not present" do
+    before { order.completed = nil }
     it { should_not be_valid }
   end
 

@@ -1,2 +1,16 @@
 <% provide(:title, 'New Order') %>
-<h1>New order</h1>
+<div class="row">
+  <%= render 'shared/sidebar' %>
+  <div class="span8">
+    <h1>New order</h1>
+      <%= form_for @order do |f| %>
+        Estimated Time of Arrival: <%= f.text_field :eta, class: "span2" %></br>
+
+        <%= fields_for @line_items do |x| %>
+        Quantity of Books: <%= x.number_field :quantity, class: "span1" %>
+        <% end %></br>
+
+        <%= f.submit class: "btn btn-large btn-primary" %>
+      <% end %>
+  </div>
+</div>
