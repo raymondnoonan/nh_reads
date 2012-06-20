@@ -1,13 +1,29 @@
 <% provide(:title, 'New Order') %>
+<%= javascript_tag "var autocomplete_items = #{ @autocomplete_items.to_json };" %>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        $('#auto_complete').typeahead({
+          source: autocomplete_items
+        });
+    });
+</script>
 <div class="row">
   <%= render 'shared/sidebar' %>
   <div class="span8">
     <h1>New order</h1>
       <%= form_for @order do |f| %>
-        Estimated Time of Arrival: <%= f.text_field :eta, class: "span2" %></br>
+        <%= f.label :eta, 'Estimated Time of Arrival' %>
+        <%= f.text_field :chronic_eta, class: "span2" %></br>
 
-        <%= fields_for @line_items do |x| %>
-        Quantity of Books: <%= x.number_field :quantity, class: "span1" %>
+        <%= fields_for @line_item do |x| %>
+
+          <%= x.label :genre, 'Genres' %>
+
+          <%= x.text_field :genre, id: "auto_complete", :data => { :provide => 'typeahead' } %>
+
+          <%= x.label :quantity, 'Quantity of Books' %>
+          <%= x.number_field :quantity, class: "span1" %>
+
         <% end %></br>
 
         <%= f.submit class: "btn btn-large btn-primary" %>

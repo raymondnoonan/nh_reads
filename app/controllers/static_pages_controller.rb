@@ -5,7 +5,4 @@ class StaticPagesController < ApplicationController
   		redirect_to user_path(@user)
   	end
   end
-
-  def about
-  end
 end

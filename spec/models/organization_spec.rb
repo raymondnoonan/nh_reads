@@ -29,7 +29,18 @@ describe "Organization" do
 
 	describe "validations" do
 		describe "when street is not present" do
+			before { organization.address_street = nil }
+			it { should_not be_valid }
+		end
+
+		describe "when town is not present" do
+			before { organization.address_town = nil }
+			it { should_not be_valid }
+		end
+
+		describe "when state is not present" do
+			before { organization.address_state = nil }
+			it { should_not be_valid }
 		end
 	end
-
 end

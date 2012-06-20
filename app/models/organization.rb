@@ -14,4 +14,8 @@
 class Organization < ActiveRecord::Base
   attr_accessible :address_state, :address_street, :address_town, :name
   has_many :users, dependent: :destroy
+
+  validates :address_state, presence: true
+  validates :address_town, presence: true
+  validates :address_street, presence: true
 end

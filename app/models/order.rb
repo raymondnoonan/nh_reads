@@ -9,9 +9,10 @@
 #  updated_at :datetime        not null
 #  completed  :boolean         default(FALSE)
 #
+require 'chronic'
 
 class Order < ActiveRecord::Base
-  attr_accessible :eta
+  attr_accessible :eta, :chronic_eta
   has_one :line_item, dependent: :destroy
   belongs_to :user
   default_scope order: 'orders.created_at DESC'
@@ -19,4 +20,12 @@ class Order < ActiveRecord::Base
   validates :user_id, presence: true
   validates :eta, presence: true
   validates_inclusion_of :completed, :in => [true, false]
+
+  def chronic_eta
+  	self.eta
+  end
+
+  def chronic_eta=(s)
+  	self.eta = Chronic.parse(s) if s
+  end
 end
