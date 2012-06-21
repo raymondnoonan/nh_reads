@@ -4,7 +4,7 @@ helper_method :sort_column, :sort_direction
 
   def show
     @user = current_user
-    @orders = current_user.orders.paginate(:per_page => 3, :page => params[:page]) #TODO: secure from SQL injection
+    @orders = current_user.orders.paginate(:per_page => 3, :page => params[:page])
   end
 
   def edit

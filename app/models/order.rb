@@ -9,6 +9,18 @@
 #  updated_at :datetime        not null
 #  completed  :boolean         default(FALSE)
 #
+
+# == Schema Information
+#
+# Table name: orders
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  eta        :datetime
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#  completed  :boolean         default(FALSE)
+#
 require 'chronic'
 
 class Order < ActiveRecord::Base

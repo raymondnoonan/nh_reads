@@ -2,25 +2,14 @@
     <table class = "table table-condensed">
       <thead>
         <tr>
-          <th>Org. Name</th>  <!-- fix the sortable method -->
+          <th>Organization</th>  <!-- fix the sortable method -->
           <th>Quantity</th>
           <th>ETA</th>
           <th>Entered At</th>
         </tr>
       </thead>
       <tbody>
-      <% for order in @orders %>
-        <% unless order.completed %>
-        <tr>
-          <td><%= order.user.name %></br><span class="org-name"><%= order.user.organization.name %></span></td>
-          <td><%= order.line_items.first.quantity %></td>
-          <td><%= order.eta.strftime("%I:%M %p") %></br> <!-- get newline %n to work -->
-              <%= order.eta.strftime("%m-%d-%Y") %></td>
-          <td><%= order.created_at.strftime("%I:%M %p") %></br> <!-- get newline %n to work -->
-              <%= order.created_at.strftime("%m-%d-%Y") %></td>
-        </tr>
-        <% end %>
-      <% end %>
+        <!-- add accordion here -->
       </tbody>
     </table>
     <%= will_paginate @orders %>
