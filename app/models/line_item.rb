@@ -26,6 +26,5 @@ class LineItem < ActiveRecord::Base
   validates_presence_of :genre
   validates_inclusion_of :genre, :in => AdultGenresTitled + ChildGenresTitled
   validates_presence_of :quantity
-  validates_numericality_of :quantity, :only_integer => true, :greater_than_or_equal_to => 0, 
-    :message => "Invalid quantity"
+  validates_numericality_of :quantity, :only_integer => true, :greater_than => 0
 end

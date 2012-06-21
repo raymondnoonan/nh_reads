@@ -6,7 +6,8 @@
       <%= render 'form_errors' %>
       <%= form_for @order do |f| %>
         <%= f.label :eta, 'Estimated Time of Arrival' %>
-        <%= f.text_field :chronic_eta, class: "span2", id: 'Estimated Time of Arrival' %></br>
+        <%= f.text_field :chronic_eta, class: "span2", id: 'Estimated Time of Arrival', 
+        :autocomplete => "off" %></br>
 
         <%= fields_for @line_item do |x| %>
 
