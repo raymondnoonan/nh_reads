@@ -18,13 +18,13 @@ class LineItem < ActiveRecord::Base
     cookbooks sports hobbies arts teacher_resources reference travel health religion humor foreign
     college_&_career]
   AdultGenresTitled = AdultGenres.map {|t| t.titleize }
-  ChildGenres = %w[young_adult_fiction young_adult_series childrens_series childrens_poetry 
+  ChildGenres = %w[young_adult_fiction young_adult_series childrens_series children's_poetry 
   	chapter_books picture_books board_books sports science_and_math children's_religion
     holiday social_studies]
   ChildGenresTitled = ChildGenres.map { |x| x.titleize }
 
-  validates :order_id, presence: true
   validates_presence_of :genre
+  validates_inclusion_of :genre, :in => AdultGenresTitled + ChildGenresTitled
   validates_presence_of :quantity
   validates_numericality_of :quantity, :only_integer => true, :greater_than_or_equal_to => 0, 
     :message => "Invalid quantity"

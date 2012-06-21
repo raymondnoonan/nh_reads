@@ -4,11 +4,11 @@ describe "Order pages" do
 	let(:user) { FactoryGirl.create(:user) }
 	subject { page }
 
-	shared_examples_for "all invalid attempts" do
-		it "should not create an order" do
-		  expect { click_button "Create Order" }.should_not change(Order, :count)
-		end
-	end
+#	shared_examples_for "all invalid attempts" do
+#		it "should not create an order" do
+#		  expect { click_button "Create Order" }.should_not change(LineItem, :count)
+#		end
+#	end
 
 
 	describe "not signed in" do
@@ -31,19 +31,42 @@ describe "Order pages" do
 
 		  describe "with invalid information" do
 		    describe "with all fields blank" do
-			  	it_should_behave_like "all invalid attempts"
+			  	it "should not create an order" do
+		  		  expect { click_button "Create Order" }.should_not change(Order, :count)
+				end
 		    end
 
 		    describe "with only ETA blank" do
-		   	  before { fill_in "Quantity of Books", with: 5 }
+		   	  before do
+		   	   fill_in "Quantity of Books", with: "5"
+		   	   fill_in "Genre", with: "Romance"
+		   	  end
 	
-		  	  	it_should_behave_like "all invalid attempts"
+		  	  	it "should not create an order" do
+		  		  expect { click_button "Create Order" }.should_not change(Order, :count)
+				end
 		    end
 
 		    describe "with only quantity blank" do
-		      before { fill_in "Estimated Time of Arrival", with: "6/12/2009 3:30 pm" }
+		      before do 
+		      	fill_in "Estimated Time of Arrival", with: "6/12/2009 3:30 pm"
+		      	fill_in "Genre", with: "Romance"
+		      end
 		
-		      	it_should_behave_like "all invalid attempts"
+		      	it "should not create an order" do
+		  		  expect { click_button "Create Order" }.should_not change(Order, :count)
+				end
+		    end
+
+		    describe "with only Genre blank" do
+		    	before do
+		    		fill_in "Estimated Time of Arrival", with: "6/12/2010 4:47 PM"
+		    		fill_in "Quantity of Books", with: "7"
+		    	end
+
+		    	it "should not create an order" do
+		    		expect { click_button "Create Order" }.should_not change(Order, :count)
+		    	end
 		    end
 
 		    describe "with ETA valid and quantity invalid (as a negative number)" do
@@ -51,7 +74,9 @@ describe "Order pages" do
 		    	 fill_in "Estimated Time of Arrival", with: "6/12/2009 3:30 pm"
 		    	 fill_in "Quantity of Books", with: "-2"
 		    	end
-		    	it_should_behave_like "all invalid attempts"
+		    	it "should not create an order" do
+		  		  expect { click_button "Create Order" }.should_not change(Order, :count)
+				end
 		    end
 
 		    describe "with ETA invalid and quantity valid" do
@@ -60,13 +85,16 @@ describe "Order pages" do
 		    		fill_in "Quantity of Books", with: "5"
 		    	end
 
-		    	it_should_behave_like "all invalid attempts"
+		    	it "should not create an order" do
+		  		  expect { click_button "Create Order" }.should_not change(Order, :count)
+				end
 		    end
 		  end
 
 		  describe "with valid information" do
 		  	before do
 		  		fill_in "Estimated Time of Arrival", with: "2/4/1993 3:32 AM"
+		  		fill_in "Genre", with: "Science Fiction"
 		  		fill_in "Quantity of Books", with: "5"
 		  	end
 

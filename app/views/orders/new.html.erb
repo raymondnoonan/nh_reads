@@ -7,23 +7,46 @@
         });
     });
 </script>
+<% if @order.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+       The form contains <%= pluralize(@order.errors.count, "error") %> in the order model.
+     </div>
+     <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if @line_item.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      The form contains <%= pluralize(@line_item.errors.count, "error") %> in the Line Item model.
+    </div>
+    <ul>
+        <% @line_item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+    </ul>
+  </div> 
+<% end %>
 <div class="row">
   <%= render 'shared/sidebar' %>
   <div class="span8">
     <h1>New order</h1>
       <%= form_for @order do |f| %>
         <%= f.label :eta, 'Estimated Time of Arrival' %>
-        <%= f.text_field :chronic_eta, class: "span2" %></br>
+        <%= f.text_field :chronic_eta, class: "span2", id: 'Estimated Time of Arrival' %></br>
 
         <%= fields_for @line_item do |x| %>
 
-          <%= x.label :genre, 'Genres' %>
-
-          <%= x.text_field :genre, id: "auto_complete", :data => { :provide => 'typeahead' } %>
+          <%= x.label :genre, 'Genre' %>
+          <%= x.text_field :genre, id: "Genre", :data => { :provide => 'typeahead' } %> 
+          <!-- id: "auto_complete" -->
 
           <%= x.label :quantity, 'Quantity of Books' %>
           <%= x.number_field :quantity, class: "span1" %>
-
         <% end %></br>
 
         <%= f.submit class: "btn btn-large btn-primary" %>

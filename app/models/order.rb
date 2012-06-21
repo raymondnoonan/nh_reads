@@ -13,7 +13,7 @@ require 'chronic'
 
 class Order < ActiveRecord::Base
   attr_accessible :eta, :chronic_eta
-  has_one :line_item, dependent: :destroy
+  has_many :line_items, dependent: :destroy
   belongs_to :user
   default_scope order: 'orders.created_at DESC'
 

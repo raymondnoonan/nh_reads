@@ -39,10 +39,5 @@ describe "Line Items" do
 			before { line_item.quantity = 1.51 }
 			it { should_not be_valid }
 		end
-
-		describe "when order id is nil" do               # order_id
-			before { line_item.order_id = nil }
-			it { should_not be_valid }
-		end
 	end
 end

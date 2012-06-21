@@ -21,7 +21,7 @@ describe Order do
   it { should respond_to(:eta) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
-  it { should respond_to(:line_item) }
+  it { should respond_to(:line_items) }
   it { should respond_to(:completed) }
   its(:user) { should == user }
 
