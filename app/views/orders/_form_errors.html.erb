@@ -1,0 +1,20 @@
+<% if @order.errors.any? %>
+  <div id="error_explanation">
+       The form contains <%= pluralize(@order.errors.count, "error") %> in the order model.
+     <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if @line_item.errors.any? %>
+  <div id="error_explanation">
+      The form contains <%= pluralize(@line_item.errors.count, "error") %> in the Line Item model.
+    <ul>
+        <% @line_item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+    </ul>
+  </div> 
+<% end %>
