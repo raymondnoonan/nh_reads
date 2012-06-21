@@ -1,40 +1,9 @@
 <% provide(:title, 'New Order') %>
-<%= javascript_tag "var autocomplete_items = #{ @autocomplete_items.to_json };" %>
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        $('#auto_complete').typeahead({
-          source: autocomplete_items
-        });
-    });
-</script>
-<% if @order.errors.any? %>
-  <div id="error_explanation">
-    <div class="alert alert-error">
-       The form contains <%= pluralize(@order.errors.count, "error") %> in the order model.
-     </div>
-     <ul>
-        <% @order.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-    </ul>
-  </div>
-<% end %>
-<% if @line_item.errors.any? %>
-  <div id="error_explanation">
-    <div class="alert alert-error">
-      The form contains <%= pluralize(@line_item.errors.count, "error") %> in the Line Item model.
-    </div>
-    <ul>
-        <% @line_item.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-    </ul>
-  </div> 
-<% end %>
 <div class="row">
   <%= render 'shared/sidebar' %>
   <div class="span8">
     <h1>New order</h1>
+      <%= render 'form_errors' %>
       <%= form_for @order do |f| %>
         <%= f.label :eta, 'Estimated Time of Arrival' %>
         <%= f.text_field :chronic_eta, class: "span2", id: 'Estimated Time of Arrival' %></br>
@@ -42,8 +11,8 @@
         <%= fields_for @line_item do |x| %>
 
           <%= x.label :genre, 'Genre' %>
-          <%= x.text_field :genre, id: "Genre", :data => { :provide => 'typeahead' } %> 
-          <!-- id: "auto_complete" -->
+          <%= x.text_field :genre, id: "Genre", :data => { :provide => 'typeahead', :source => 
+            @autocomplete_items }, :autocomplete => "off" %> 
 
           <%= x.label :quantity, 'Quantity of Books' %>
           <%= x.number_field :quantity, class: "span1" %>

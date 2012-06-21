@@ -14,8 +14,10 @@
         <tr>
           <td><%= order.user.name %></br><span class="org-name"><%= order.user.organization.name %></span></td>
           <td><%= order.line_items.first.quantity %></td>
-          <td><%= order.eta.strftime("%m-%d-%Y %I:%M %p") %></td>
-          <td><%= order.created_at.strftime("%m-%d-%Y %I:%M %p") %></td>
+          <td><%= order.eta.strftime("%I:%M %p") %></br> <!-- get newline %n to work -->
+              <%= order.eta.strftime("%m-%d-%Y") %></td>
+          <td><%= order.created_at.strftime("%I:%M %p") %></br> <!-- get newline %n to work -->
+              <%= order.created_at.strftime("%m-%d-%Y") %></td>
         </tr>
         <% end %>
       <% end %>
