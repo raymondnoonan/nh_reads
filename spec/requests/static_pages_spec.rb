@@ -12,10 +12,10 @@ describe "Static pages" do
 		let(:user) { FactoryGirl.create(:user) }
 		
 		describe "not signed in" do
-		  let(:heading) { 'Welcome to the New Haven Reads Book Center' }
+#		  let(:heading) { 'Welcome to the New Haven Reads Book Center' }
 		  let(:title)   { 'Home' }
 
-		  it_should_behave_like "all static pages"
+#		  it_should_behave_like "all static pages"
 		end
 
 		describe "signed in" do

@@ -12,6 +12,7 @@
 #
 
 class Organization < ActiveRecord::Base
+
   attr_accessible :address_state, :address_street, :address_town, :name
   has_many :users, dependent: :destroy
 

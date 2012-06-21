@@ -1,11 +1,11 @@
   <% unless @user.orders.empty? %>
-    <table class = "table table-striped table-bordered">
+    <table class = "table table-condensed">
       <thead>
         <tr>
-          <th>Entered By</th>
+          <th>Org. Name</th>  <!-- fix the sortable method -->
           <th>Quantity</th>
-          <th><%= sortable "eta", "ETA" %></th>
-          <th><%= sortable "created_at", "Entered At" %></th>
+          <th>ETA</th>
+          <th>Entered At</th>
         </tr>
       </thead>
       <tbody>
@@ -23,6 +23,7 @@
       <% end %>
       </tbody>
     </table>
+    <%= will_paginate @orders %>
   <% else %>
     <p>No orders to display.</p>
   <% end %>
