@@ -25,8 +25,11 @@ require 'chronic'
 
 class Order < ActiveRecord::Base
   attr_accessible :eta, :chronic_eta
-  has_many :line_items, dependent: :destroy
+
   belongs_to :user
+  has_many :line_items, dependent: :destroy
+  accepts_nested_attributes_for :line_items
+
   default_scope order: 'orders.created_at DESC'
 
   validates :user_id, presence: true
