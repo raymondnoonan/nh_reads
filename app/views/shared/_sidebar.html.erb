@@ -1,3 +1,4 @@
+<% unless params[:action] == 'print' %>
 <div class="span4">
   <aside class="span3">
     <section>
@@ -9,9 +10,10 @@
     <section>
       <ul class="nav nav-list">
         <li><%= link_to "New order", new_order_path %></li>
-        <li><%= link_to "Order history", '#' %></li>
+        <li><%= link_to "Order history", history_path(@user) %></li>
         <li><%= link_to "Statistics", '#' %></li>
       </ul>
     </section>
   </aside>
 </div>
+<% end %>

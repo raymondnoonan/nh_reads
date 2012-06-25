@@ -22,21 +22,52 @@ describe "User pages" do
 	      fill_in "Email", with: user.email
 	      fill_in "Password", with: user.password
 	      click_button "Sign in"
+	      visit user_path(user)
 	    end
 
 	    describe "Profile page" do
 	      before { visit user_path(user) }
+	      it { should have_content(user.name) }
 		  it { should have_content(user.email) }
 	    end
+      end
+    end
 
-	    describe "displaying orders" do
-	    	it "should display the correct attributes of the orders" do
-	    	  user.orders.each do |order|
-	    	  	page.should have_selector('td', content: order.eta)
-	    	  	page.should have_selector('td', content: order.created_at)
-	    	  end
-	    	end
-	    end
+    describe "attempting to sign in" do
+    	describe "with all information incorrect" do
+    	  before do
+    	   visit new_user_session_path
+    	   fill_in "Email", with: "fwefweqd"
+    	   fill_in "Password", with: "hahahahaha"
+    	   click_button "Sign in"
+    	  end
+
+    	  it { should have_content('Invalid') }
+    	  it { should have_content('Sign in') }
+    	end
+
+      describe "with Email correct and password incorrect" do
+      	before do
+      	  visit new_user_session_path
+      	  fill_in "Email", with: user.email
+      	  fill_in "Password", with: "ffwweew232__."
+      	  click_button "Sign in"
+      	end
+
+      	it { should have_content('Invalid') }
+      	it { should have_content('Sign in') }
+      end
+
+      describe "with Email incorrect and password correct" do
+      	before do
+      		visit new_user_session_path
+      		fill_in "Email", with: "9230fmmfe"
+      		fill_in "Password", with: user.password
+      		click_button "Sign in"
+      	end
+
+      	it { should have_content('Invalid') }
+      	it { should have_content('Sign in') }
       end
     end
 end

@@ -1,0 +1,27 @@
+<% if @user.any_orders_completed? %>
+    <table class="table table-condensed" id="history">
+      <thead>
+        <tr>
+          <th>Organization</th>  <!-- fix the sortable method -->
+          <th>Total Books</th>
+          <th>ETA</th>
+          <th>Entered At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.orders.each do |order| %>
+          <% if order.completed? %>
+            <tr>
+              <td><%= link_to order.organization.name, order_path(order) %></td>
+              <td><%= order.total_books %></td>
+              <td><%= order.eta.strftime("%m-%d-%Y") %></td>
+              <td><%= order.created_at.strftime("%m-%d-%Y") %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @orders %>
+  <% else %>
+    <p>No orders to display.</p>
+  <% end %>

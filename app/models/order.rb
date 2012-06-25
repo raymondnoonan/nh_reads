@@ -33,11 +33,23 @@ class Order < ActiveRecord::Base
   validates :eta, presence: true
   validates_inclusion_of :completed, :in => [true, false]
 
+  def organization
+    self.user.organization
+  end
+
   def chronic_eta
   	self.eta
   end
 
   def chronic_eta=(s)
   	self.eta = Chronic.parse(s) if s
+  end
+
+  def total_books
+    n = 0
+    self.line_items.each do |li|
+      n += li.quantity
+    end
+    return n
   end
 end

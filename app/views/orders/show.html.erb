@@ -1,0 +1,40 @@
+<% provide(:title, 'Order Profile') %>
+<div class="row">
+	  <%= render 'shared/sidebar' %>
+	  <%= link_to "Print", print_path(@order), class: "btn btn-large btn-danger" %>
+  <h1>Order Profile</h1>
+  <div class="span8">
+  	<h2>Order Breakdown</h2>
+    <table class="table table-condensed">
+	  <thead>
+	    <th>Genre</th>
+		<th>Amount</th>
+	  </thead>
+	  <tbody>
+	  <% @order.line_items.each do |li| %>
+	    <tr>
+		  <td><%= li.genre %></td>
+		  <td><%= li.quantity %></td>
+		</tr>
+	  <% end %>
+	  </tbody>
+	</table></br>
+
+	<h2>General Information</h2>
+	<table class="table">
+	  <tbody>
+	  	<tr>
+	      <td>Entered by:</td> 
+	      <td><%= @order.user.name %></td>
+	    </tr>
+	    <tr>
+	      <td>Created at:</td>
+	      <td><%= @order.created_at.strftime("%I:%M %p %m-%d-%Y") %>.</td>
+	    </tr>
+	    <tr>
+	      <td>Expected pickup:</td>
+	      <td><%= @order.eta.strftime("%I:%M %p %m-%d-%Y") %>.</td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>

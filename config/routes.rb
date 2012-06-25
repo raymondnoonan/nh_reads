@@ -1,9 +1,12 @@
 Nhreads::Application.routes.draw do
 
   devise_for :users
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show]
   resources :orders
   root to: 'static_pages#home'              # Home page
+
+  match "/print/:id" => 'orders#print', :as => :print
+  match "/orders/history/:id" => 'orders#history', :as => :history
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

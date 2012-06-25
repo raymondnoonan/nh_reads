@@ -1,19 +1,41 @@
+# TODO:
+#   - Write test for a signed-in user attempting to visit another user's order index
+#   - Write test for a user's order index
+#   - Write test for user's order history
+
 require 'spec_helper'
 
 describe "Order pages" do 
 	let(:user) { FactoryGirl.create(:user) }
+
+	let(:order_not_complete) { FactoryGirl.create(:order, user: user) }
+	  let(:line_item_1) { FactoryGirl.create(:line_item, order: order_not_complete) }
+	  let(:line_item_2) { FactoryGirl.create(:line_item, order: order_not_complete) }
+
+	let(:order_completed) { FactoryGirl.create(:order, user: user, completed: true) }
+	  let(:line_item_3) { FactoryGirl.create(:line_item, order: order_completed, genre: "Computers") }
+	  let(:line_item_4) { FactoryGirl.create(:line_item, order: order_completed, genre: "Romance") }
+
 	subject { page }
 
-#	shared_examples_for "all invalid attempts" do
-#		it "should not create an order" do
-#		  expect { click_button "Create Order" }.should_not change(LineItem, :count)
-#		end
-#	end
-
-
 	describe "not signed in" do
-		before { visit new_order_path }
-		it { should have_content('Sign in') }
+		describe "attempting to create a new order" do
+		  before { visit new_order_path }
+
+		  it { should have_content('Sign in') }
+		end
+
+		describe "attempting to visit an order show page" do
+			before { visit order_path(order_not_complete) }
+
+			it { should have_content('Sign in') }
+		end
+
+		describe "attempting to visit the order index page" do
+			before { visit orders_path }
+
+			it { should have_content('Sign in') }
+		end
 	end
 
 	describe "signed in" do
@@ -22,6 +44,37 @@ describe "Order pages" do
 	    fill_in "Email", with: user.email
 	    fill_in "Password", with: user.password
 	    click_button "Sign in"
+      end
+
+      describe "visiting an order show page" do
+      	before { visit order_path(order_not_complete) }
+
+      	it { should have_content(line_item_1.quantity.to_s) }
+      	it { should have_content(line_item_2.quantity.to_s) }
+      end
+
+      describe "visiting a different order show page" do
+      	before { visit order_path(order_completed) }
+
+      	it { should have_content(line_item_3.quantity.to_s) }
+      	it { should have_content(line_item_4.quantity.to_s) }
+      end
+
+      describe "visiting the orders index page" do
+      	before { visit orders_path }
+
+      	describe "with pending orders" do
+      	  it { should have_selector('h1', text: user.first_name + "'s Pending Orders") }
+
+      	  it { should have_content("Organization") }
+      	  it { should have_content("Total Books") }
+      	  it { should have_content("ETA") }
+      	  it { should have_content("Entered At") }
+
+      	  it { should have_content(user.organization.name) }
+#      	  it { should have_content(order_not_complete.total_books.to_s) }
+      	  it { should_not have_content(order_completed.total_books.to_s) }
+      	end
       end
 
 	  describe "creating a new order" do

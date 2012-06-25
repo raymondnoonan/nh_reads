@@ -40,4 +40,59 @@ class User < ActiveRecord::Base
   # Custom validations
   validates :name, presence: true
   validates :organization_id, presence: true
+
+  # Helper methods
+  def first_name
+    self.name.split.first
+  end
+
+  def last_name
+    self.name.split.last
+  end
+
+  def total_books
+    n = 0
+    self.orders.each do |order|
+      order.line_items.each do |li|
+        n += li.quantity
+      end
+    end
+    return n
+  end
+
+  def number_of(desired_genre)
+    n = 0
+    self.orders.each do |order|
+      order.line_items.each do |li|
+        if li.genre == desired_genre 
+          n += li.quantity
+        end
+      end
+    end
+    return n
+  end
+
+  def completed?
+    self.completed
+  end
+
+  def any_orders_completed?
+    n = false
+    self.orders.each do |order|
+      if order.completed == true
+        n = true
+      end
+    end
+    return n
+  end
+
+  def all_orders_completed?
+    n = true
+    self.orders.each do |order|
+      if order.completed == false
+        n = false
+      end
+    end
+      return n
+  end
 end

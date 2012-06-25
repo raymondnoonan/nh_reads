@@ -1,0 +1,9 @@
+<!-- TODO: remove rest of application  when on this page -->
+<% provide(:title, 'Print Labels') %>
+<% @order.line_items.each do |li| %>
+	<%= li.order.eta.strftime("%b %d") %> - <%= li.order.organization.name %></br>
+	<%= li.quantity %> <%= li.genre %></br>
+	P/U <%= li.order.eta.strftime("%A %m/%d/%y") %>
+</br>
+</br>
+<% end %>
