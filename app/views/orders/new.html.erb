@@ -10,7 +10,8 @@
       <%= f.semantic_fields_for :line_items do |li| %>
         <%= render 'line_item_fields', :f => li %>
       <% end %>
-      <%= link_to_add_association 'Add line item', f, :line_items %> <!-- get it to add after -->
+      <!-- TODO: refactor so it adds after, not before -->
+      <%= link_to_add_association 'Add line item', f, :line_items %>
     <% end %>
     <%= f.actions do %>
       <%= f.action :submit %>
