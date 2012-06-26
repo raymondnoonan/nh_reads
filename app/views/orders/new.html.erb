@@ -1,4 +1,14 @@
 <% provide(:title, 'New Order') %>
+<%= javascript_tag "var autocomplete_items = #{ @autocomplete_items.to_json };" %>
+
+<!-- Le JS -->
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        $('#auto_complete').typeahead({source: autocomplete_items});
+    });
+</script>
+
+<!-- Le ERB -->
 <div class="row">
   <%= render 'shared/sidebar' %>
   <div class="span8">
