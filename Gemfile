@@ -10,6 +10,7 @@ gem 'devise'
 gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 gem 'chronic'
 gem 'formtastic'
+gem 'cocoon'
 
 group :test do
 	gem 'rspec-rails'

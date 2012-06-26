@@ -8,9 +8,9 @@
     <%= f.inputs do %>
       <%= f.input :eta, :as => :string, :label => "Estimated Time of Arrival" %> 
       <%= f.semantic_fields_for :line_items do |li| %>
-        <%= li.input :genre %>
-        <%= li.input :quantity, :label => "Quantity of Books" %>
+        <%= render 'line_item_fields', :f => li %>
       <% end %>
+      <%= link_to_add_association 'Add line item', f, :line_items %> <!-- get it to add after -->
     <% end %>
     <%= f.actions do %>
       <%= f.action :submit %>
