@@ -10,21 +10,10 @@
 #  completed  :boolean         default(FALSE)
 #
 
-# == Schema Information
-#
-# Table name: orders
-#
-#  id         :integer         not null, primary key
-#  user_id    :integer
-#  eta        :datetime
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  completed  :boolean         default(FALSE)
-#
 require 'chronic'
 
 class Order < ActiveRecord::Base
-  attr_accessible :eta, :chronic_eta
+  attr_accessible :eta, :chronic_eta, :line_items_attributes
 
   belongs_to :user
   has_many :line_items, dependent: :destroy

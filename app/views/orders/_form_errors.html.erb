@@ -8,13 +8,15 @@
     </ul>
   </div>
 <% end %>
-<% if @line_item.errors.any? %>
-  <div id="error_explanation">
-      The form contains <%= pluralize(@line_item.errors.count, "error") %> in the Line Item model.
+<% if !@line_item.nil? %>
+  <% if @line_item.errors.any? %>
+    <div id="error_explanation">
+      The form contains <%= pluralize(@line_item.errors.count, "error") %> in the line item model.
     <ul>
-        <% @line_item.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
     </ul>
-  </div> 
+    </div>
+  <% end %>
 <% end %>

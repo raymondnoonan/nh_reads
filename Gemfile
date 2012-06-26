@@ -9,6 +9,7 @@ gem 'bootstrap-will_paginate'
 gem 'devise'
 gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 gem 'chronic'
+gem 'formtastic'
 
 group :test do
 	gem 'rspec-rails'

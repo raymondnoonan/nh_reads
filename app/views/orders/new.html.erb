@@ -4,34 +4,16 @@
   <div class="span8">
   <h1>New order</h1>
   <%= render 'form_errors' %>
-      <%= form_for @order, :html => { :class => "form-horizontal" } do |f| %>
-      <fieldset>
-        <div class="control-group">
-            <%= f.label :eta, 'Estimated Time of Arrival', class: "control-label" %>
-          <div class="controls">
-          <%= f.text_field :chronic_eta, class: "span2", id: 'Estimated Time of Arrival', 
-          :autocomplete => "off" %>
-        </div>
-      </div>
-
-        <%= fields_for @line_item do |x| %>
-        <div class="control-group">
-            <%= x.label :genre, 'Genre', class: "control-label" %>
-          <div class="controls">
-            <%= x.text_field :genre, class: "span2", id: "Genre", :data => { :provide => 'typeahead', :source => @autocomplete_items }, :autocomplete => "off" %> 
-          </div>
-        </div>
-
-          <div class="control-group">
-              <%= x.label :quantity, 'Quantity of Books', class: "control-label" %>
-            <div class="controls">
-              <%= x.number_field :quantity, class: "span1" %>
-            </div>
-          </div>
-        <% end %>
-
-        <%= f.submit class: "btn btn-large btn-primary" %>
-      </fieldset>
+  <%= semantic_form_for @order do |f| %>
+    <%= f.inputs do %>
+      <%= f.input :eta, :as => :string, :label => "Estimated Time of Arrival" %> 
+      <%= f.semantic_fields_for :line_items do |li| %>
+        <%= li.input :genre %>
+        <%= li.input :quantity, :label => "Quantity of Books" %>
       <% end %>
-  </div>
+    <% end %>
+    <%= f.actions do %>
+      <%= f.action :submit %>
+    <% end %>
+  <% end %>
 </div>

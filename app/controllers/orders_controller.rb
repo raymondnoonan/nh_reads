@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 	def new
 		@user = current_user      # for sidebar
 		@order = Order.new        # for error messages
-		@line_item = LineItem.new # for error messages
+		@order.line_items.build
 
 		# for autocomplete
 		@autocomplete_items = LineItem::AdultGenresTitled + LineItem::ChildGenresTitled
@@ -23,7 +23,6 @@ class OrdersController < ApplicationController
 	def create
 		@user = current_user # for sidebar
 		@order = current_user.orders.build(params[:order])
-		@line_item = @order.line_items.build(params[:line_item])
 		if @order.save
 		  flash[:success] = "Order created"
 		  redirect_to root_path
