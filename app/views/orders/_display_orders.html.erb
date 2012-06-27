@@ -19,11 +19,11 @@
             <td><%= order.eta.strftime("%m-%d-%Y") %></td>
             <td><%= order.created_at.strftime("%m-%d-%Y") %></td>
             <td><%= link_to(edit_order_path(order), class: "btn btn-mini btn-info") do %>
-                Edit  <i class="icon-edit"></i>
+              <i class="icon-edit"></i>
                 <% end %>
               </td>
             <td><%= link_to delete_order_path(order) , class: "btn btn-mini btn-danger" do %>
-                Delete  <i class="icon-trash"></i> 
+              <i class="icon-trash"></i> 
                 <% end %>
             </td>
           </tr>
