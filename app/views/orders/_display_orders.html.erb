@@ -20,14 +20,14 @@
             <td><%= order.eta.strftime("%m-%d-%Y") %></td>
             <td><%= order.created_at.strftime("%m-%d-%Y") %></td>
             <td><%= link_to '#', class: "btn btn-mini btn-success" do %>
-              <i class="icon-ok icon-white"></i>
+              <i class="icon-ok icon-white" id="Confirm"></i>
               <% end %>
             </td>
             <td><%= link_to(edit_order_path(order), class: "btn btn-mini btn-info") do %>
-              <i class="icon-edit icon-white"></i>
+              <i class="icon-edit icon-white" id="Edit"></i>
                 <% end %>
               </td>
-            <td><%= link_to delete_order_path(order) , class: "btn btn-mini btn-danger" do %>
+            <td><%= link_to delete_order_path(order), class: "btn btn-mini btn-danger", id:"Delete" do %>
               <i class="icon-trash icon-white"></i> 
                 <% end %>
             </td>
