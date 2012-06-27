@@ -9,8 +9,8 @@ gem 'devise'
 gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 gem 'chronic'
 gem 'cocoon'
-gem 'bootstrap-sass', "~> 2.0.3"
-gem 'formtastic', "~> 2.1"
+gem 'bootstrap-sass'
+gem 'formtastic'
 
 group :test do
 	gem 'rspec-rails'
