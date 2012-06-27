@@ -1,6 +1,11 @@
 class OrdersController < ApplicationController
 	before_filter :authenticate_user!
 
+	def show
+		@user = current_user
+		@order = Order.find(params[:id])
+	end
+
 	def print
 		@user = current_user
 		@order = Order.find(params[:id])
@@ -15,11 +20,6 @@ class OrdersController < ApplicationController
 		@autocomplete_items = LineItem::AdultGenresTitled + LineItem::ChildGenresTitled
 	end
 
-	def show
-		@user = current_user
-		@order = Order.find(params[:id])
-	end
-
 	def create
 		@user = current_user # for sidebar
 		@order = current_user.orders.build(params[:order])
@@ -31,6 +31,11 @@ class OrdersController < ApplicationController
 		end
 	end
 
+	def edit
+		@user = current_user
+		@order = Order.find(params[:id])
+	end
+
 	def index
 		@user = current_user
 		@orders = current_user.orders.paginate(:per_page => 5, :page => params[:page])
@@ -39,5 +44,12 @@ class OrdersController < ApplicationController
 	def history
 		@user = current_user
 		@orders = current_user.orders.paginate(:per_page => 5, :page => params[:page])
+	end
+
+	def delete
+		@order = Order.find(params[:id])
+		@order.destroy
+		flash[:success] = "Order deleted!"
+		redirect_to orders_path
 	end
 end

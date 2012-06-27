@@ -72,14 +72,10 @@ class User < ActiveRecord::Base
     return n
   end
 
-  def completed?
-    self.completed
-  end
-
   def any_orders_completed?
     n = false
     self.orders.each do |order|
-      if order.completed == true
+      if order.completed?
         n = true
       end
     end

@@ -1,4 +1,4 @@
-<% if !@user.any_orders_completed? %>
+<% if !@user.all_orders_completed? %>
     <table class="table table-condensed" id="index">
       <thead>
         <tr>
@@ -6,6 +6,8 @@
           <th>Total Books</th>
           <th>ETA</th>
           <th>Entered At</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +18,14 @@
             <td><%= order.total_books %></td>
             <td><%= order.eta.strftime("%m-%d-%Y") %></td>
             <td><%= order.created_at.strftime("%m-%d-%Y") %></td>
+            <td><%= link_to(edit_order_path(order), class: "btn btn-mini btn-info") do %>
+                Edit  <i class="icon-edit"></i>
+                <% end %>
+              </td>
+            <td><%= link_to delete_order_path(order) , class: "btn btn-mini btn-danger" do %>
+                Delete  <i class="icon-trash"></i> 
+                <% end %>
+            </td>
           </tr>
           <% end %>
         <% end %>

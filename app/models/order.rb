@@ -33,6 +33,10 @@ class Order < ActiveRecord::Base
   	self.eta
   end
 
+  def completed?
+    self.completed
+  end
+
   def chronic_eta=(s)
   	self.eta = Chronic.parse(s) if s
   end

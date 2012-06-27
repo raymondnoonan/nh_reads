@@ -8,11 +8,11 @@ require 'spec_helper'
 describe "Order pages" do 
 	let(:user) { FactoryGirl.create(:user) }
 
-	let(:order_not_complete) { FactoryGirl.create(:order, user: user) }
+	let!(:order_not_complete) { FactoryGirl.create(:order, user: user) }
 	  let(:line_item_1) { FactoryGirl.create(:line_item, order: order_not_complete) }
 	  let(:line_item_2) { FactoryGirl.create(:line_item, order: order_not_complete) }
 
-	let(:order_completed) { FactoryGirl.create(:order, user: user, completed: true) }
+	let!(:order_completed) { FactoryGirl.create(:order, user: user, completed: true) }
 	  let(:line_item_3) { FactoryGirl.create(:line_item, order: order_completed, genre: "Computers") }
 	  let(:line_item_4) { FactoryGirl.create(:line_item, order: order_completed, genre: "Romance") }
 
@@ -49,15 +49,15 @@ describe "Order pages" do
       describe "visiting an order show page" do
       	before { visit order_path(order_not_complete) }
 
-      	it { should have_content(line_item_1.quantity.to_s) }
-      	it { should have_content(line_item_2.quantity.to_s) }
+      	it { should have_content(line_item_1.quantity) }
+      	it { should have_content(line_item_2.quantity) }
       end
 
       describe "visiting a different order show page" do
       	before { visit order_path(order_completed) }
 
-      	it { should have_content(line_item_3.quantity.to_s) }
-      	it { should have_content(line_item_4.quantity.to_s) }
+      	it { should have_content(line_item_3.quantity) }
+      	it { should have_content(line_item_4.quantity) }
       end
 
       describe "visiting the orders index page" do
@@ -72,8 +72,16 @@ describe "Order pages" do
       	  it { should have_content("Entered At") }
 
       	  it { should have_content(user.organization.name) }
-#      	  it { should have_content(order_not_complete.total_books.to_s) }
-      	  it { should_not have_content(order_completed.total_books.to_s) }
+      	  it { should have_content(order_not_complete.total_books.to_s) }
+#      	  it { should_not have_content(order_completed.total_books.to_s) }
+      	end
+
+      	describe "deleting orders" do
+      		before { visit orders_path }
+
+      		it "should delete the order" do
+      			expect { click_link "Delete" }.should change(Order, :count).by(-1)
+      		end
       	end
       end
 
