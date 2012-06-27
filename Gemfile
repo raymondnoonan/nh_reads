@@ -2,15 +2,15 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 gem 'pg'
-gem 'bootstrap-sass'
 gem 'bcrypt-ruby'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'devise'
 gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 gem 'chronic'
-gem 'formtastic'
 gem 'cocoon'
+gem 'bootstrap-sass', "~> 2.0.3"
+gem 'formtastic', "~> 2.1"
 
 group :test do
 	gem 'rspec-rails'
