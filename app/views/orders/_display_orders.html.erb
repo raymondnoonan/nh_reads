@@ -1,5 +1,5 @@
 <% if !@user.all_orders_completed? %>
-    <table class="table table-condensed" id="index">
+    <table class="table table-condensed" id="products">
       <thead>
         <tr>
           <th>Organization</th>  <!-- fix the sortable method -->
@@ -27,7 +27,7 @@
               <i class="icon-edit icon-white" id="Edit"></i>
                 <% end %>
               </td>
-            <td><%= link_to delete_order_path(order), class: "btn btn-mini btn-danger", id:"Delete" do %>
+            <td><%= link_to delete_order_path(order), class: "btn btn-mini btn-danger", :confirm => "Are you sure you want to do that?" do %>
               <i class="icon-trash icon-white"></i> 
                 <% end %>
             </td>

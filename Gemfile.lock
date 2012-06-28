@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: ba12807aad9e1519b49e0244eefdd1e744dad618
+  specs:
+    jquery-datatables-rails (1.10.0)
+      jquery-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -195,6 +202,7 @@ DEPENDENCIES
   formtastic
   guard-rspec
   guard-spork
+  jquery-datatables-rails!
   jquery-rails
   pg
   rails (= 3.2.3)
