@@ -18,3 +18,10 @@
 //= require bootstrap
 //= require_tree .
 //= require cocoon
+
+// So that cocoon adds after, not before, other line items
+$(document).ready(function() {
+    $("a.add_fields").
+      data("association-insertion-position", 'after').
+      data("association-insertion-node", 'this');
+});

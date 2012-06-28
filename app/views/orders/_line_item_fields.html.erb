@@ -1,5 +1,7 @@
 <div class="nested-fields">
-    <%= f.input :genre, input_html: { autocomplete: "off", id: "auto_complete" } %>
-    <%= f.input :quantity, :label => "Quantity of Books" %>
-  <%= link_to_remove_association "Remove line item", f %>
+	<%= f.input :quantity, :label => "Quantity of Books", input_html: { class: "span1" } %>
+    <%= f.input :genre, input_html: { autocomplete: "off", class: "span2 auto_complete" } %>
+    <%= link_to_remove_association "Remove Line Item", f %>
 </div>
+
+<!-- Use :wrapper => :small if you want to try the inline again -->

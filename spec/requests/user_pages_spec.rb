@@ -7,32 +7,6 @@ describe "User pages" do
 	subject { page }
 
 	describe "authorization" do
-	  describe "as un-signed-in user" do
-	    describe "visiting a Profile page" do
-		  before { visit user_path(user) }
-
-		  it { should have_content('Sign in') }
-		  it { should_not have_content(user.email) }
-		  end
-	    end
-
-	  describe "as signed-in user" do
-	    before do
-	      visit new_user_session_path
-	      fill_in "Email", with: user.email
-	      fill_in "Password", with: user.password
-	      click_button "Sign in"
-	      visit user_path(user)
-	    end
-
-	    describe "Profile page" do
-	      before { visit user_path(user) }
-	      it { should have_content(user.name) }
-		  it { should have_content(user.email) }
-	    end
-      end
-    end
-
     describe "attempting to sign in" do
     	describe "with all information incorrect" do
     	  before do
@@ -70,4 +44,5 @@ describe "User pages" do
       	it { should have_content('Sign in') }
       end
     end
+  end
 end

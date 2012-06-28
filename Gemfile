@@ -10,7 +10,7 @@ gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 gem 'chronic'
 gem 'cocoon'
 gem 'bootstrap-sass'
-gem 'formtastic'
+gem 'simple_form'
 
 group :test do
 	gem 'rspec-rails'
