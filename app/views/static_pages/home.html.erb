@@ -1,9 +1,26 @@
 <% provide(:title, 'Home') %>
 	<% if !user_signed_in? %>
-	<div class="center hero-unit">
-	<h1>Welcome to the New Haven Reads Book Center</h1>
-	<p>Help us spread the joy of reading.</p>
-
-	<%= link_to "Sign in here!", new_user_session_path, class: "btn btn-large btn-primary" %>
+	<div class="center">
+	<div id="myCarousel" class="carousel slide">
+	<!- Carousel items -->
+	  <div class="carousel-inner">
+	  	<div class="active item">
+	  		<%= link_to image_tag "fiona_picture.png" %>
+	  	</div>
+	  	<div class="item">
+	  		<%= link_to image_tag "student_picture.png" %>
+	  	</div>
+	  	<div class="item">
+	  		<%= link_to image_tag "rugby-nhreads.png" %>
+	  	</div>
+	  </div>
+	<!-- Carousel nav -->
+	  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	</div>
+	<%= link_to "Sign in!", new_user_session_path, class: "btn btn-large btn-primary" %>
+	<%= link_to "Sign up!", '#', class: "btn btn-large btn-warning" %>
+	<% else %>
+	<p>Get off this page! You shouldn't be here!</p>
 	<% end %>
 </div>

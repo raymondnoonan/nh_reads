@@ -5,10 +5,10 @@
 			<nav>
 				<%= link_to "New Haven Reads", root_path, id: "logo" %>
 				<ul class="nav pull-left">
+					<% if user_signed_in? %>
 					<li class="divider-vertical"></li>
 					<li><%= link_to "Home", root_path %></li>
 					<li class="divider-vertical"></li>
-					  <% if user_signed_in? %>
 					    <li><%= link_to "My orders", orders_path, method: :get %></li>
 					    <li class="divider-vertical"></li>
 					  	<li class="dropdown" id="menu1">
@@ -34,6 +34,3 @@
 	</div>
 </header>
 <% end %>
-
-<!-- image for header: image_tag("nhrlogo.jpg", alt: "New Haven Reads", size: "150x100") -->
-<!-- TODO: change the background of the picture to black -->

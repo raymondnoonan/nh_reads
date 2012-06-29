@@ -11,6 +11,7 @@ gem 'chronic'
 gem 'cocoon'
 gem 'bootstrap-sass'
 gem 'simple_form'
+gem 'data_table'
 
 group :test do
 	gem 'rspec-rails'
