@@ -5,4 +5,7 @@ class StaticPagesController < ApplicationController
   		redirect_to orders_path
   	end
   end
+
+  def signup
+  end
 end

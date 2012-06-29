@@ -35,8 +35,10 @@
 	    </tr>
 	  </tbody>
 	</table>
+	<div class="buttons">
 	  <%= link_to "Print", print_path(@order), class: "btn btn-large" %>
 	  <%= link_to "Edit",  edit_order_path(@order), class: "btn btn-large btn-info" %>
 	  <%= link_to "Delete", delete_order_path(@order), class: "btn btn-large btn-danger", :confirm => "Are you sure you want to do that?" %>
 	  <%= link_to "Confirm", '#', class: "btn btn-large btn-success" %>
+	</div>
 </div>

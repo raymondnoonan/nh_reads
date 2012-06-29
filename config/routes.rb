@@ -5,6 +5,7 @@ Nhreads::Application.routes.draw do
   resources :orders
   root to: 'static_pages#home'              # Home page
 
+  match "/sign_up" => 'static_pages#signup', :as => :sign_up
   match "/orders/delete/:id" => 'orders#delete', :as => :delete_order
   match "/print/:id" => 'orders#print', :as => :print
   match "/orders/history/:id" => 'orders#history', :as => :history

@@ -12,11 +12,20 @@ describe "Static pages" do
 		let(:user) { FactoryGirl.create(:user) }
 		
 		describe "not signed in" do
-#		  let(:heading) { 'Welcome to the New Haven Reads Book Center' }
-		  let(:title)   { 'Home' }
+			describe "signing up" do
+				before { click_link "Sign up!" }
 
-#		  it_should_behave_like "all static pages"
+				it { should have_selector('h1', text: 'Sign up') }
+
+				describe "a new organization" do
+				end
+
+				describe "a new user" do
+					# signing up a new user
+				end
+			end
 		end
+
 
 		describe "signed in" do
 		  before do
