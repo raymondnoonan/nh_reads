@@ -1,6 +1,6 @@
 <% provide(:title, 'Home') %>
-	<% if !user_signed_in? %>
-	<div class="center">
+<% if !user_signed_in? %>
+  <div class="center">
 	<div id="myCarousel" class="carousel slide">
 	<!- Carousel items -->
 	  <div class="carousel-inner">
@@ -19,8 +19,14 @@
 	  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 	</div>
 	<%= link_to "Sign in!", new_user_session_path, class: "btn btn-large btn-primary" %>
-	<%= link_to "Sign up!", '#', class: "btn btn-large btn-warning" %>
-	<% else %>
-	<p>Get off this page! You shouldn't be here!</p>
-	<% end %>
+    <div class="btn-group dropup">
+	  <a href='#' data-toggle="dropdown" class= "btn btn-large btn-warning dropdown-toggle">
+	  Sign up!
+	  </a>
+	  <ul class="dropdown-menu">
+	  	<li><%= link_to "Register an organization", '#' %></li>
+	  	<li><%= link_to "Register as a new user", '#' %></li>
+	  </ul>
+	</div>
 </div>
+<% end %>

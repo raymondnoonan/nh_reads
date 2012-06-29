@@ -5,7 +5,7 @@
           <th>Organization</th>  <!-- fix the sortable method -->
           <th>Total Books</th>
           <th>ETA</th>
-          <th>Entered At</th>
+          <th>Entered On</th>
           <th>Confirm</th>
           <th>Edit</th>
           <th>Delete</th>
@@ -17,8 +17,8 @@
           <tr>
             <td><%= link_to order.organization.name, order_path(order) %></td>
             <td><%= order.total_books %></td>
-            <td><%= order.eta.strftime("%m-%d-%Y") %></td>
-            <td><%= order.created_at.strftime("%m-%d-%Y") %></td>
+            <td><%= order.eta.strftime("%b %e") %></td>
+            <td><%= order.created_at.strftime("%b %e") %></td>
             <td><%= link_to '#', class: "btn btn-mini btn-success" do %>
               <i class="icon-ok icon-white" id="Confirm"></i>
               <% end %>

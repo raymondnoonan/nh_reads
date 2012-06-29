@@ -27,11 +27,11 @@
 	    </tr>
 	    <tr>
 	      <td>Created at:</td>
-	      <td><%= @order.created_at.strftime("%I:%M %p %m-%d-%Y") %>.</td>
+	      <td><%= @order.created_at.strftime("%b %e, %I:%M %p") %></td>
 	    </tr>
 	    <tr>
 	      <td>Expected pickup:</td>
-	      <td><%= @order.eta.strftime("%I:%M %p %m-%d-%Y") %>.</td>
+	      <td><%= @order.eta.strftime("%b %e, %I:%M %p") %></td>
 	    </tr>
 	  </tbody>
 	</table>

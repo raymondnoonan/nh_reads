@@ -91,6 +91,7 @@ describe "Order pages" do
 		  it { should have_selector('title', text: 'New Order') }
 
 		  describe "with invalid information" do
+
 		    describe "with all fields blank" do
 			  	it "should not create an order" do
 		  		  expect { click_button "Create Order" }.should_not change(Order, :count)
