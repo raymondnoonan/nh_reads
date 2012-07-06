@@ -3,6 +3,17 @@
   <%= render 'shared/sidebar' %>
   <h1>Edit Order</h1>
   <div class="span8">
-  	<p>Put edit form here.</p>
+  	<%= simple_form_for @order do |f| %>
+  	     <%= f.input :eta, :required => false, :label => "Estimated Time of Arrival", :as => :string, :input_html => { :class => "span2", autocomplete: "off" } %>
+  		  <%= f.simple_fields_for :line_items do |li| %>
+   		    <%= render 'line_item_fields', :f => li %>
+   		  <% end %>
+   		  <%= link_to_add_association f, :line_items, class: "btn btn-mini btn-success"  do %>
+     		 <i class="icon-plus-sign icon-white"></i> Add Line Item
+   		  <% end %></br>
+   		  <div class="center">
+    	    <%= f.button :submit, class: "btn-large btn-primary" %>
+    	  </div>
+    <% end %>
   </div>
 </div>

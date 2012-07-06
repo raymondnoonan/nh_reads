@@ -31,6 +31,16 @@ class OrdersController < ApplicationController
 		end
 	end
 
+	def update
+		@order = Order.find(params[:id])
+		if @order.update_attributes(params[:order])
+			flash[:success] = "Order updated"
+			redirect_to root_path
+		else
+			render 'new'
+		end
+	end
+
 	def edit
 		@user = current_user
 		@order = Order.find(params[:id])
