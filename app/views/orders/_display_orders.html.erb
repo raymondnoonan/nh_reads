@@ -17,17 +17,11 @@
           <tr>
             <td><%= link_to order.organization.name, order_path(order) %></td>
             <td><%= order.total_books %></td>
-            <td><%= order.eta.strftime("%b %e") %></td>
-            <td><%= order.created_at.strftime("%b %e") %></td>
-            <td><%= render 'confirm_button' %></td>
-            <td><%= link_to(edit_order_path(order), class: "btn btn-mini btn-info") do %>
-              <i class="icon-edit icon-white" id="Edit"></i>
-                <% end %>
-              </td>
-            <td><%= link_to delete_order_path(order), class: "btn btn-mini btn-danger", :confirm => "Are you sure you want to do that?" do %>
-              <i class="icon-trash icon-white"></i> 
-                <% end %>
-            </td>
+            <td><%= order.eta.strftime("%b %e, %Y") %></td>
+            <td><%= order.created_at.strftime("%b %e, %Y") %></td>
+            <td><%= render 'confirm_button', :order => order %></td>
+            <td><%= render 'edit_button', :order => order %></td>
+            <td><%= render 'delete_button', :order => order %></td>
           </tr>
           <% end %>
         <% end %>

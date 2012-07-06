@@ -12,6 +12,7 @@ gem 'cocoon'
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'data_table'
+gem 'validates_timeliness', '~> 3.0.2'
 
 group :test do
 	gem 'rspec-rails'
