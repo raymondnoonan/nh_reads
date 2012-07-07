@@ -9,12 +9,12 @@ describe "Order pages" do
 	let(:user) { FactoryGirl.create(:user) }
 
 	let!(:order_not_complete) { FactoryGirl.create(:order, user: user) }
-	  let(:line_item_1) { FactoryGirl.create(:line_item, order: order_not_complete) }
-	  let(:line_item_2) { FactoryGirl.create(:line_item, order: order_not_complete) }
+	  let!(:line_item_1) { FactoryGirl.create(:line_item, order: order_not_complete) }
+	  let!(:line_item_2) { FactoryGirl.create(:line_item, order: order_not_complete) }
 
 	let!(:order_completed) { FactoryGirl.create(:order, user: user, completed: true) }
-	  let(:line_item_3) { FactoryGirl.create(:line_item, order: order_completed, genre: "Computers") }
-	  let(:line_item_4) { FactoryGirl.create(:line_item, order: order_completed, genre: "Romance") }
+	  let!(:line_item_3) { FactoryGirl.create(:line_item, order: order_completed, genre: "Computers") }
+	  let!(:line_item_4) { FactoryGirl.create(:line_item, order: order_completed, genre: "Romance") }
 
 	subject { page }
 
@@ -69,7 +69,7 @@ describe "Order pages" do
       	  it { should have_content("Organization") }
       	  it { should have_content("Total Books") }
       	  it { should have_content("ETA") }
-      	  it { should have_content("Entered At") }
+      	  it { should have_content("Entered On") }
 
       	  it { should have_content(user.organization.name) }
       	  it { should have_content(order_not_complete.total_books.to_s) }
@@ -155,7 +155,7 @@ describe "Order pages" do
 
 		  describe "with valid information" do
 		  	before do
-		  		fill_in "Estimated Time of Arrival", with: "2/4/1993 3:32 AM"
+		  		fill_in "Estimated Time of Arrival", with: "4/5/2020 3:32 AM"
 		  		fill_in "Genre", with: "Science Fiction"
 		  		fill_in "Quantity of Books", with: "5"
 		  	end

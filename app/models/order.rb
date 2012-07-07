@@ -23,6 +23,7 @@ class Order < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :eta, presence: true
+  validates_date :eta, :on_or_after => Time.now
   validates_inclusion_of :completed, :in => [true, false]
 
   def organization

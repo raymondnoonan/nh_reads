@@ -14,7 +14,7 @@ require 'spec_helper'
 
 describe Order do
   let(:user) { FactoryGirl.create(:user) }
-  let(:order) { FactoryGirl.create(:order, user: user) }
+  let!(:order) { FactoryGirl.create(:order, user: user) }
 
   subject { order }
 
@@ -26,6 +26,11 @@ describe Order do
   its(:user) { should == user }
 
   it { should be_valid }
+
+  describe "when eta is before created_at" do
+    before { order.eta = 3.days.ago }
+    it { should_not be_valid }
+  end
 
   describe "when user_id is not present" do
   	before { order.user_id = nil }
