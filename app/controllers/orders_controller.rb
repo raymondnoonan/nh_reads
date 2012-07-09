@@ -14,7 +14,6 @@ class OrdersController < ApplicationController
 	def new
 		@user = current_user      # for sidebar
 		@order = Order.new        # for error messages
-		@order.line_items.build
 
 		# for autocomplete
 		@autocomplete_items = LineItem::AdultGenresTitled + LineItem::ChildGenresTitled

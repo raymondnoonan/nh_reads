@@ -1,9 +1,17 @@
 <div class="nested-fields">
-	  <%= f.input :quantity, :required => false, :label => "Quantity of Books", input_html: { class: "span1" } %>
+<div class="row">
+	<div class="span4">
       <%= f.input :genre, :required => false, input_html: { autocomplete: "off", class: "span2 auto_complete" } %>
+    </div>
+	<div class="span3">
+	  <%= f.input :quantity, :required => false, :label => "Quantity of Books", input_html: { class: "span1" } %>
+	</div>
+    <div class="span1">
       <%= link_to_remove_association f, class: "btn btn-mini btn-danger" do %>
         <i class="icon-minus-sign icon-white"></i>
       <% end %>
+  </div>
+</div>
 </div>
 
 <!-- Use :wrapper => :small if you want to try the inline again -->
