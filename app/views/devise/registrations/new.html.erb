@@ -3,7 +3,7 @@
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
-<!-- Put in organization name, and validate Organization name uniqueness -->
+<!-- TODO: Put in organization name, and validate Organization name uniqueness -->
   <div class="form-inputs">
     <%= f.input :email, :required => true, :autofocus => true %>
     <%= f.input :password, :required => true %>

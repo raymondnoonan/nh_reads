@@ -31,6 +31,7 @@ class OrdersController < ApplicationController
 	end
 
 	def update
+		@user = current_user
 		@order = Order.find(params[:id])
 		if @order.update_attributes(params[:order])
 			flash[:success] = "Order updated"

@@ -1,20 +1,41 @@
-<% provide(:title, "Edit Order") %>
+<% provide(:title, 'Edit Order') %>
+<%= javascript_tag "var autocomplete_items = #{ @autocomplete_items.to_json };" %>
 
+<!-- Le JS -->
+<script type="text/javascript">
+$().ready(function() {
+  
+    $(".auto_complete").live('focus', function() {
+        $(".auto_complete").typeahead({
+        source: autocomplete_items
+        });
+    });
+
+});
+</script>
+
+<!-- Le ERB -->
 <div class="row">
   <%= render 'shared/sidebar' %>
   <div class="span8">
-    <h1>Edit Order</h1>
-  	<%= simple_form_for(@order, :html => { :class => 'form-horizontal'}) do |f| %>
-  	  <%= f.input :eta, :required => false, :label => "Estimated Time of Arrival", :as => :string, :input_html => { :class => "span2", autocomplete: "off" } %>
-      <%= link_to_add_association f, :line_items, class: "btn btn-mini btn-success"  do %>
-        <i class="icon-plus-sign icon-white"></i> Add Line Item
-      <% end %></br>
-  		<%= f.simple_fields_for :line_items do |li| %>
-   		  <%= render 'line_item_fields', :f => li %>
-   		<% end %>
-   		<div class="center">
-    	  <%= f.button :submit, class: "btn-large btn-primary" %>
-    	</div>
-    <% end %>
+    <h1>Edit order</h1>
+    <div class="row">
+      <%= simple_form_for(@order, :html => { :class => 'form-horizontal'}) do |f| %>
+      <div class="span6">
+        <%= f.input :eta, :required => false, :label => "Estimated Time of Arrival", :as => :string, :input_html => { :class => "span2", autocomplete: "off" } %>
+      </div>
+      <div class="span8">
+        <%= f.simple_fields_for :line_items do |li| %>
+        <%= render 'line_item_fields', :f => li %>
+        <% end %>
+      </div>
+    <%= link_to_add_association f, :line_items, class: "btn btn-mini btn-success"  do %>
+      <i class="icon-plus-sign icon-white"></i> Add Line Item
+    <% end %></br>
+    <div class="center span8">
+    <%= f.button :submit, class: "btn-large btn-primary" %>
+    </div>
+  </div>
+  <% end %>
   </div>
 </div>
