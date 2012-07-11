@@ -26,10 +26,6 @@ class Order < ActiveRecord::Base
   validates_date :eta, :on_or_after => Time.now
   validates_inclusion_of :completed, :in => [true, false]
 
-  def organization
-    self.user.organization
-  end
-
   def chronic_eta
   	self.eta
   end

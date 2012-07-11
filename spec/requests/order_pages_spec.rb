@@ -71,9 +71,8 @@ describe "Order pages" do
       	  it { should have_content("ETA") }
       	  it { should have_content("Entered On") }
 
-      	  it { should have_content(user.organization.name) }
+      	  it { should have_content(user.organization) }
       	  it { should have_content(order_not_complete.total_books.to_s) }
-#      	  it { should_not have_content(order_completed.total_books.to_s) }
       	end
 
       	describe "deleting orders" do

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe "User pages" do 
 	let(:user) { FactoryGirl.create(:user) }
-	let!(:order_1) { FactoryGirl.create(:order) }
-	let!(:order_2) { FactoryGirl.create(:order) }
+	let!(:order_1) { FactoryGirl.create(:order, user: user) }
+	let!(:order_2) { FactoryGirl.create(:order, user: user) }
 	subject { page }
 
 	describe "authorization" do

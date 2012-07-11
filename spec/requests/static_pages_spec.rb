@@ -17,9 +17,6 @@ describe "Static pages" do
 
 				it { should have_selector('h1', text: 'Sign up') }
 
-				describe "a new organization" do
-				end
-
 				describe "a new user" do
 					# signing up a new user
 				end

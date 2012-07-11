@@ -30,16 +30,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :orders, dependent: :destroy
-  belongs_to :organization
 
   before_save { |user| user.email = email.downcase }
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :organization
   
   # Custom validations
   validates :name, presence: true
-  validates :organization_id, presence: true
+  validates :organization, presence: true, uniqueness: true
+  ### TODO: Fix organization validation ###
 
   # Helper methods
   def first_name

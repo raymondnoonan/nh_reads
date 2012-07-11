@@ -26,17 +26,13 @@
 require 'spec_helper'
 
 describe User do
-  let(:organization) { FactoryGirl.create(:organization) }
-  let(:user) { FactoryGirl.create(:user, organization: organization) }
+  let(:user) { FactoryGirl.create(:user) }
   subject { user }
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:orders) }
   it { should respond_to(:organization) }
-  it { should respond_to(:organization_id) }
-  its(:organization) { should == organization }
-  its(:organization_id) { should == organization.id }
 
   it { should be_valid }
 
@@ -46,10 +42,12 @@ describe User do
       it { should_not be_valid }
     end
 
-    describe "when organization id is not present" do
-      before { user.organization_id = nil }
+    describe "when organization is blank" do
+      before { user.organization = " " }
       it { should_not be_valid }
     end
+
+    ### TODO: include working organization uniqueness validation test ###
   end
 
   describe "order associations" do
