@@ -64,7 +64,7 @@ describe "Order pages" do
       	before { visit orders_path }
 
       	describe "with pending orders" do
-      	  it { should have_selector('h1', text: user.first_name + "'s Pending Orders") }
+      	  it { should have_selector('h1', text: "Your Pending Orders") }
 
       	  it { should have_content("Organization") }
       	  it { should have_content("Total Books") }
