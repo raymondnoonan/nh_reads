@@ -31,7 +31,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :orders, dependent: :destroy
 
-  before_save { |user| user.email = email.downcase }
+  before_save do |user| 
+    user.email = email.downcase
+    user.organization = organization.downcase
+  end
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :organization

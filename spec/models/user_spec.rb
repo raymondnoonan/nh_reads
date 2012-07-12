@@ -49,9 +49,9 @@ describe User do
 
     describe "when organization is not unique" do
       before do
-        user_with_same_email = user.dup
-        user_with_same_email.email = user.email.upcase
-        user_with_same_email.save
+        user_with_same_org = user.dup
+        user_with_same_org.organization = user.organization
+        user_with_same_org.save
       end
 
       it { should_not be_valid }
