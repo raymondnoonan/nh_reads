@@ -3,7 +3,7 @@
   <aside class="span3">
     <section>
       <!-- Basic user information -->
-      <%= @user.organization %></br>
+      <%= @user.organization.titleize %></br>
 	    <%= @user.name %>
       <%= @user.email %>
     </section>
@@ -11,9 +11,18 @@
       <ul class="nav nav-list">
         <li><%= link_to "New order", new_order_path %></li>
         <li><%= link_to "Order history", history_path(@user) %></li>
-        <li><%= link_to "Statistics", '#' %></li>
+        <li><%= link_to "Statistics", statistics_user_path(@user) %></li>
       </ul>
     </section>
+    <!-- Buttons for show orders page -->
+    <% if params[:action] == 'show' && params[:controller] == 'orders' %>
+    <div class="buttons">
+      <%= render 'print_button', :order => @order %>
+      <%= render 'confirm_button', :order => @order %>
+      <%= render 'edit_button', :order => @order %>
+      <%= render 'delete_button', :order => @order %>
+    </div>
+    <% end %>
   </aside>
 </div>
 <% end %>

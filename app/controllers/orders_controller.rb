@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
 	def new
 		@user = current_user      # for sidebar
 		@order = Order.new        # for error messages
-		@autocomplete_items = LineItem::AdultGenresTitled + LineItem::ChildGenresTitled
+		@autocomplete_items = LineItem::AllGenresTitled
 	end
 
 	def create
@@ -46,7 +46,11 @@ class OrdersController < ApplicationController
 
 	def index
 		@user = current_user
-		@orders = current_user.orders.paginate(:per_page => 5, :page => params[:page])
+		@orders = current_user.orders.count
+		respond_to do |format|
+    	  format.html
+    	  format.json { render :json => OrdersDatatable.new(view_context) }
+  	    end
 	end
 
 	def history

@@ -13,7 +13,7 @@
 require 'chronic'
 
 class Order < ActiveRecord::Base
-  attr_accessible :eta, :chronic_eta, :line_items_attributes
+  attr_accessible :eta, :chronic_eta, :line_items_attributes, :destination
 
   belongs_to :user
   has_many :line_items, dependent: :destroy
@@ -22,9 +22,10 @@ class Order < ActiveRecord::Base
   default_scope order: 'orders.created_at DESC'
 
   validates :user_id, presence: true
-  validates :eta, presence: true
   validates_date :eta, :on_or_after => Time.now
+  validates :chronic_eta, presence: true
   validates_inclusion_of :completed, :in => [true, false]
+  validates :destination, presence: true
 
   def chronic_eta
   	self.eta
@@ -44,5 +45,9 @@ class Order < ActiveRecord::Base
       n += li.quantity
     end
     return n
+  end
+
+  def organization
+    self.user.organization
   end
 end

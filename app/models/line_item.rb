@@ -22,9 +22,10 @@ class LineItem < ActiveRecord::Base
   	chapter_books picture_books board_books sports science_and_math children's_religion
     holiday social_studies]
   ChildGenresTitled = ChildGenres.map { |x| x.titleize }
+  AllGenresTitled = AdultGenresTitled + ChildGenresTitled
 
   validates_presence_of :genre
-  validates_inclusion_of :genre, :in => AdultGenresTitled + ChildGenresTitled
+  validates_inclusion_of :genre, :in => AllGenresTitled
   validates_presence_of :quantity
   validates_numericality_of :quantity, :only_integer => true, :greater_than => 0
 end

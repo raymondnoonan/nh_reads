@@ -71,12 +71,12 @@ describe "Order pages" do
       	  it { should have_content("ETA") }
       	  it { should have_content("Entered On") }
 
-      	  it { should have_content(user.organization) }
+      	  it { should have_content(user.organization.titleize) }
       	  it { should have_content(order_not_complete.total_books.to_s) }
       	end
 
       	describe "deleting orders" do
-      		before { visit orders_path }
+      		before { visit order_path(order_completed) }
 
       		it "should delete the order" do
       			expect { click_link "Delete" }.should change(Order, :count).by(-1)
@@ -85,7 +85,10 @@ describe "Order pages" do
       end
 
 	  describe "creating a new order" do
-		  before { visit new_order_path }
+		  before do 
+		  	visit new_order_path
+		  	click_link "Add Line Item"
+		  end
 
 		  it { should have_selector('title', text: 'New Order') }
 

@@ -1,13 +1,20 @@
 Nhreads::Application.routes.draw do
 
   devise_for :users
-  resources :users, only: [:show]
-  resources :orders
+  resources :users, only: [:show] do
+    member do
+      get 'statistics'
+    end
+  end
+  resources :orders do
+    member do
+      get 'print'
+    end
+  end
   root to: 'static_pages#home'              # Home page
 
   match "/sign_up" => 'static_pages#signup', :as => :sign_up
   match "/orders/delete/:id" => 'orders#delete', :as => :delete_order
-  match "/print/:id" => 'orders#print', :as => :print
   match "/orders/history/:id" => 'orders#history', :as => :history
 
   # The priority is based upon order of creation:

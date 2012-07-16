@@ -1,10 +1,10 @@
 <div class="nested-fields">
   <div class="row">
 	<div class="span4">
-      <%= f.input :genre, :required => false, input_html: { autocomplete: "off", class: "span2 auto_complete" } %>
+      <%= f.input :genre, :required => false, input_html: { autocomplete: "off", class: "span2 auto_complete", id: "Genre" } %>
     </div>
 	<div class="span3">
-	  <%= f.input :quantity, :required => false, :label => "Quantity of Books", input_html: { class: "span1" } %>
+	  <%= f.input :quantity, :required => false, :label => "Quantity of Books", input_html: { class: "span1", id: "Quantity of Books" } %>
 	</div>
     <div class="span1">
       <%= link_to_remove_association f, class: "btn btn-mini btn-danger" do %>

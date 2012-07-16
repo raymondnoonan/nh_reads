@@ -22,6 +22,9 @@
 	<table class="table">
 	  <tbody>
 	  	<tr>
+	  		<td>Destination:</td>
+	  		<td><%= @order.destination %></td>
+	  	<tr>
 	      <td>Entered by:</td> 
 	      <td><%= @order.user.name %></td>
 	    </tr>
@@ -35,10 +38,4 @@
 	    </tr>
 	  </tbody>
 	</table>
-	<div class="buttons">
-	  <%= render 'print_button', :order => @order %>
-	  <%= render 'confirm_button', :order => @order %>
-	  <%= render 'edit_button', :order => @order %>
-	  <%= render 'delete_button', :order => @order %>
-	</div>
 </div>

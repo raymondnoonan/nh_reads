@@ -10,6 +10,7 @@ FactoryGirl.define do
   factory :order do
     eta Time.now
     user
+    destination "Airport"
   end
 
   factory :line_item do

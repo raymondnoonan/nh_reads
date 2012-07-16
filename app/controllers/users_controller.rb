@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 before_filter :authenticate_user!
-helper_method :sort_column, :sort_direction
+  def statistics
+    @user = current_user
+  end
 
   def edit
   	@user = current_user
@@ -14,14 +16,5 @@ helper_method :sort_column, :sort_direction
   	else
   		render 'edit'
   	end
-  end
-
-  private
-  def sort_column
-    params[:sort] || "user"
-  end
-
-  def sort_direction
-    params[:direction] || "asc"
   end
 end

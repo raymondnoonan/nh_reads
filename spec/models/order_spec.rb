@@ -27,6 +27,11 @@ describe Order do
 
   it { should be_valid }
 
+  describe "when destination is not present" do
+    before { order.destination = "" }
+    it { should_not be_valid }
+  end
+  
   describe "when eta is before created_at" do
     before { order.eta = 3.days.ago }
     it { should_not be_valid }
