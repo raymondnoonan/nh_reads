@@ -45,6 +45,17 @@ class User < ActiveRecord::Base
   ### TODO: Fix organization validation ###
 
   # Helper methods
+
+  # takes a month as input and returns an array with the first being a genre and the second being number of books
+  # ordered by ALL users this month
+  # WAY TO IMPLEMENT:
+    # 1. Ensure that month is of a proper input
+    # 2. Get all Line Items. Check that the eta's month is equal to the input month. If it is, add its quantity to
+    # the total.
+    # 3. Return the total
+  def books_for_month_of(month)
+  end
+
   def first_name
     self.name.split.first
   end
@@ -76,22 +87,20 @@ class User < ActiveRecord::Base
   end
 
   def any_orders_completed?
-    n = false
     self.orders.each do |order|
       if order.completed?
-        n = true
+        return true
       end
     end
-    return n
+    return false
   end
 
   def all_orders_completed?
-    n = true
     self.orders.each do |order|
       if order.completed == false
-        n = false
+        return false
       end
     end
-      return n
+    return true
   end
 end

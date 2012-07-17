@@ -46,11 +46,28 @@ describe "Order pages" do
 	    click_button "Sign in"
       end
 
+      # Write printing tests:
+        # Visit order show page
+        # Hit print order page
+        # Check that completed attribute changed
+        # Find order show page again, hit print order button again, check that completed attribute has changed once again
+        # Hit the print button one more time, check completed attribute one more time
+
+      describe "printing an order" do
+      	before do
+      		visit order_path(order_not_complete)
+      		click_link "Print"
+      	end
+
+      	# how to check if attribute changed?
+      end
+
       describe "visiting an order show page" do
       	before { visit order_path(order_not_complete) }
 
       	it { should have_content(line_item_1.quantity) }
       	it { should have_content(line_item_2.quantity) }
+
       end
 
       describe "visiting a different order show page" do
@@ -58,6 +75,13 @@ describe "Order pages" do
 
       	it { should have_content(line_item_3.quantity) }
       	it { should have_content(line_item_4.quantity) }
+      end
+
+      describe "visiting an order edit page" do
+      	# Tests to write:
+      	  # Editing each attribute individually
+      	  # Editing more than one attribute at the same time
+      	  # Editing attributes with correct and incorrect values
       end
 
       describe "visiting the orders index page" do

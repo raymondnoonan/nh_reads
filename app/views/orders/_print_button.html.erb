@@ -1,3 +1,3 @@
-<%= link_to print_order_path(order), class: "btn btn-mini btn-inverse" do %>
+<%= link_to toggle_order_path, :method => :put, class: "btn btn-mini btn-inverse", id: "Print" do %>
     <i class="icon-print icon-white"></i>
 <% end %>

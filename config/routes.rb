@@ -9,6 +9,7 @@ Nhreads::Application.routes.draw do
   resources :orders do
     member do
       get 'print'
+      put :toggle
     end
   end
   root to: 'static_pages#home'              # Home page

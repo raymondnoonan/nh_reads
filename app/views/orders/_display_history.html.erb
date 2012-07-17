@@ -1,5 +1,5 @@
 <% if @user.any_orders_completed? %>
-    <table class="table table-condensed" id="history">
+    <table class="table table-bordered" id="orders", data-source="<%= orders_url(format: "json") %>">
       <thead>
         <tr>
           <th>Organization</th>  <!-- fix the sortable method -->
@@ -11,17 +11,11 @@
       <tbody>
         <% @user.orders.each do |order| %>
           <% if order.completed? %>
-            <tr>
-              <td><%= link_to order.organization.name, order_path(order) %></td>
-              <td><%= order.total_books %></td>
-              <td><%= order.eta.strftime("%m-%d-%Y") %></td>
-              <td><%= order.created_at.strftime("%m-%d-%Y") %></td>
-            </tr>
+            <%= render 'table_body', :order => order %>
           <% end %>
         <% end %>
       </tbody>
     </table>
-    <%= will_paginate @orders %>
   <% else %>
     <p>No orders to display.</p>
   <% end %>

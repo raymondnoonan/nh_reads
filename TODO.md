@@ -12,25 +12,22 @@
     i. Define as_json for Order model
 
 2. Create non-NHR User interface
-  a. Do not allow non-NHR users to edit or confirm orders
+  a. Do not allow non-NHR users to print orders
     i. Implement CanCan do deal with this
     ii. Or SHOULD they be allowed to edit orders? What if the person on the other side wants to change the order as well?
-  b. non-NHR users must only be able to see their own pending and past orders
+  b. non-NHR users must only be able to see their own pending and past orders, and only create orders for themselves
   c. Create relationship between non-NHR and NHR users so that when a non-NHR user creates a new order, it shows up in
      the NHR pending orders page
      i. Possible implementation: when a new user is created, if it is NOT a NHR account, then build a relationship
      between it and the NHR account in the create action.
+     ii. This may not be necessary; one can just add some logic to the User model or controller:
+       j. If the user is an NHR user, pull ALL orders from the database. If its a non-NHR user, just pull the orders
+       associated with that user.
 
 3. Fully implmement printing feature
   a. Create label model, and have print button lead to a form to create labels?
     i. If this route, somehow figure out validations so that the total quantity of books on all the labels associated with an order add up to the order's total quantity
     ii. If one can't implement this, figure it out so that the labels can be anthing, but you print on the screen what the line-items are. This would involve dynamically adding label items to the page
-  b. Have pending orders mean orders that have not been printed. Upon clicking print button, have the completed attribute of the order change to true.
-    i. Include as form parameter called completed and access with params[:completed], saving with order.completed == params
-  [:completed].
-    ii. Answer saved on StackOverflow- see favorites and implement accordingly.
-    iii. The toggle method in Rails switches true to false and false to true
-    iv. Send to a special action in the controller, which will change the attribute as neccessary and then redirect to the print page
 
 4. Implement statistics page
   a. Total number of books ordered this month
@@ -63,5 +60,5 @@ Part 1, Javascript & jQuery: Getting Started with Javascript
 6/17/2012: Install CanCan, implement non-NHR interface + authorization, Read Chapter 11 of Hartl tutorial
 6/18/2012: Implement relationship model so adding orders on non-NHR account adds them to NHR index
 6/19/2012: Optimize DataTables with Ben. Implement Texticle if needed.
-6/20/2012: 
+6/20/2012: Implement statistics page
 6/21/2012: 

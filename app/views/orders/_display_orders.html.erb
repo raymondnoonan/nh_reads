@@ -5,19 +5,13 @@
           <th>Organization</th>  <!-- fix the sortable method -->
           <th>Total Books</th>
           <th>ETA</th>
-          <th>Entered On</th>
+          <th>Entered At</th>
         </tr>
       </thead>
       <tbody>
         <% @user.orders.each do |order| %>
           <% unless order.completed? %>
-          <tr>
-            <!-- TODO: Style table further with blue and orange -->
-            <td><%= link_to order.organization.titleize, order_path(order) %></td>
-            <td><%= order.total_books %></td>
-            <td><%= order.eta.strftime("%b %e, %Y") %></td>
-            <td><%= order.created_at.strftime("%b %e, %Y") %></td>
-          </tr>
+            <%= render 'table_body', :order => order %>
           <% end %>
         <% end %>
       </tbody>

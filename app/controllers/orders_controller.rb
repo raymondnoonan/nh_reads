@@ -1,6 +1,12 @@
 class OrdersController < ApplicationController
 	before_filter :authenticate_user!
 
+	def toggle
+		@order = Order.find(params[:id])
+		@order.toggle!(:completed)
+		redirect_to print_order_path(@order)
+	end
+
 	def show
 		@user = current_user
 		@order = Order.find(params[:id])

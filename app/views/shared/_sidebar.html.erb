@@ -18,7 +18,6 @@
     <% if params[:action] == 'show' && params[:controller] == 'orders' %>
     <div class="buttons">
       <%= render 'print_button', :order => @order %>
-      <%= render 'confirm_button', :order => @order %>
       <%= render 'edit_button', :order => @order %>
       <%= render 'delete_button', :order => @order %>
     </div>

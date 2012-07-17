@@ -13,7 +13,7 @@
 require 'chronic'
 
 class Order < ActiveRecord::Base
-  attr_accessible :eta, :chronic_eta, :line_items_attributes, :destination
+  attr_accessible :eta, :chronic_eta, :line_items_attributes, :destination, :completed
 
   belongs_to :user
   has_many :line_items, dependent: :destroy
