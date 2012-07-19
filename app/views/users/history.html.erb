@@ -1,0 +1,8 @@
+<% provide(:title, 'Order History') %>
+<div class="row">
+	  <%= render 'shared/sidebar' %>
+  <h1><%= current_user.first_name %>'s Order History</h1>
+  <div class="span8">
+	<%= render 'users/display_history' %>
+  </div>
+</div>

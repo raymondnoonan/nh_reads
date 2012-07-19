@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 
   # Helper methods
 
-  def books_for_this_month
+  def self.books_for_this_month
     a = Hash.new(0) # hash with key as titled genre and value of total number of books in that genre for this 
                     # month with default value as zero
     # pulls all line items with orders that have ETAs in this month in alphabetical order
@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
     return a
   end
 
-  def total_books_for_this_month
+  def self.total_books_for_this_month
     a = 0 # total number of books ordered this month
     self.books_for_this_month.each_value do |genre_quantity|
       a += genre_quantity     # iterates through each value in the hash, adding the quantity to the total

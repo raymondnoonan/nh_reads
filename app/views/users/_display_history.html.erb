@@ -1,9 +1,8 @@
-<% if !current_user.all_orders_completed? %>
-    <table class="table table-bordered" id="orders" data-source="<%= orders_url(format: "json") %>">
+<% if current_user.any_orders_completed? %>
+    <table class="table table-bordered" id="orders", data-source="<%= orders_url(format: "json") %>">
       <thead>
         <tr>
           <th>Organization</th>  <!-- fix the sortable method -->
-          <th>Destination</th>
           <th>Total Books</th>
           <th>ETA</th>
           <th>Entered At</th>
@@ -11,7 +10,7 @@
       </thead>
       <tbody>
         <% current_user.orders.each do |order| %>
-          <% unless order.completed? %>
+          <% if order.completed? %>
             <%= render 'shared/table_body', :order => order %>
           <% end %>
         <% end %>

@@ -14,9 +14,7 @@
 2. Create non-NHR User interface
   a. Do not allow non-NHR users to print orders
     i. Implement CanCan do deal with this
-    ii. Or SHOULD they be allowed to edit orders? What if the person on the other side wants to change the order as well?
-  b. non-NHR users must only be able to see their own pending and past orders, and only create orders for themselves
-  c. Create relationship between non-NHR and NHR users so that when a non-NHR user creates a new order, it shows up in
+  b. Create relationship between non-NHR and NHR users so that when a non-NHR user creates a new order, it shows up in
      the NHR pending orders page
      i. Possible implementation: when a new user is created, if it is NOT a NHR account, then build a relationship
      between it and the NHR account in the create action.

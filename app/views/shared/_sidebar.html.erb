@@ -3,15 +3,15 @@
   <aside class="span3">
     <section>
       <!-- Basic user information -->
-      <%= @user.organization.titleize %></br>
-	    <%= @user.name %>
-      <%= @user.email %>
+      <%= current_user.organization.titleize %></br>
+	    <%= current_user.name %>
+      <%= current_user.email %>
     </section>
     <section>
       <ul class="nav nav-list">
         <li><%= link_to "New order", new_order_path %></li>
-        <li><%= link_to "Order history", history_path(@user) %></li>
-        <li><%= link_to "Statistics", statistics_user_path(@user) %></li>
+        <li><%= link_to "Order history", history_user_path(current_user) %></li>
+        <li><%= link_to "Statistics", statistics_user_path(current_user) %></li>
       </ul>
     </section>
     <!-- Buttons for show orders page -->

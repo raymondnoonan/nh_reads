@@ -1,17 +1,18 @@
 class UsersController < ApplicationController
 before_filter :authenticate_user!
   def statistics
-    @user = current_user
-    @data = current_user.books_for_this_month
+    @data = User::books_for_this_month
+  end
+
+  def history
+    @orders = current_user.orders.paginate(:per_page => 5, :page => params[:page])
   end
 
   def edit
-  	@user = current_user
   end
 
   def update
-  	@user = current_user
-  	if @user.update_attributes(params[:user])
+  	if current_user.update_attributes(params[:user])
   		flash[:success] = "Profile updated"
   		redirect_to root_path
   	else

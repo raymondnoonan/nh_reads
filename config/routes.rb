@@ -4,6 +4,7 @@ Nhreads::Application.routes.draw do
   resources :users, only: [:show] do
     member do
       get 'statistics'
+      get 'history'
     end
   end
   resources :orders do
@@ -14,9 +15,7 @@ Nhreads::Application.routes.draw do
   end
   root to: 'static_pages#home'              # Home page
 
-  match "/sign_up" => 'static_pages#signup', :as => :sign_up
   match "/orders/delete/:id" => 'orders#delete', :as => :delete_order
-  match "/orders/history/:id" => 'orders#history', :as => :history
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

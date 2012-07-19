@@ -28,12 +28,16 @@ class Order < ActiveRecord::Base
   validates_inclusion_of :completed, :in => [true, false]
   validates :destination, presence: true
 
-  def as_json
-    json = { :organization => self.organization, 
-             :destination => destination, 
-             :total_books => self.total_books, 
-             :eta => eta, 
-             :entered_at => created_at }
+  def self.as_data(orders)
+    orders.map do |item|
+      [ 
+        item.organization.titleize, 
+        item.destination, 
+        item.total_books, 
+        item.eta.strftime("%b %e, %Y"), 
+        item.created_at.strftime("%b %e, %Y") 
+      ]
+    end
   end
 
   def chronic_eta

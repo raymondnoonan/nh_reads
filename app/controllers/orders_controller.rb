@@ -8,23 +8,19 @@ class OrdersController < ApplicationController
 	end
 
 	def show
-		@user = current_user
 		@order = Order.find(params[:id])
 	end
 
 	def print
-		@user = current_user
 		@order = Order.find(params[:id])
 	end
 
-	def new
-		@user = current_user      # for sidebar
+	def new      # for sidebar
 		@order = Order.new        # for error messages
 		@autocomplete_items = LineItem::AllGenresTitled
 	end
 
-	def create
-		@user = current_user # for sidebar
+	def create # for sidebar
 		@order = current_user.orders.build(params[:order])
 		if @order.save
 		  flash[:success] = "Order created"
@@ -35,7 +31,6 @@ class OrdersController < ApplicationController
 	end
 
 	def update
-		@user = current_user
 		@order = Order.find(params[:id])
 		if @order.update_attributes(params[:order])
 			flash[:success] = "Order updated"
@@ -46,22 +41,11 @@ class OrdersController < ApplicationController
 	end
 
 	def edit
-		@user = current_user
 		@order = Order.find(params[:id])
 	end
 
 	def index
-		@user = current_user
-		@orders = current_user.orders.count
-		respond_to do |format|
-    	  format.html
-    	  format.json { render :json => OrdersDatatable.new(view_context) }
-  	    end
-	end
-
-	def history
-		@user = current_user
-		@orders = current_user.orders.paginate(:per_page => 5, :page => params[:page])
+		@orders = current_user.orders
 	end
 
 	def delete
