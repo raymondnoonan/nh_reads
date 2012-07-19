@@ -13,6 +13,7 @@
 class LineItem < ActiveRecord::Base
   attr_accessible :quantity, :genre
   belongs_to :order
+  
   AdultGenres = %w[adult_fiction romance science_fiction mystery computers law_&_political_science history
   	business math science non-fiction anthropology psychology classics drama poetry parenting biography,_autobiography,_&_memoir
     cookbooks sports hobbies arts teacher_resources reference travel health religion humor foreign

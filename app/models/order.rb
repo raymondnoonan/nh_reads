@@ -14,6 +14,7 @@ require 'chronic'
 
 class Order < ActiveRecord::Base
   attr_accessible :eta, :chronic_eta, :line_items_attributes, :destination, :completed
+  scope :this_month, lambda { where("eta > ? AND eta < ?", Time.now.beginning_of_month, Time.now.end_of_month) }
 
   belongs_to :user
   has_many :line_items, dependent: :destroy

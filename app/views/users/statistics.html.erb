@@ -1,11 +1,31 @@
+<% require 'gchart' %>
+
 <% provide(:title, 'Statistics') %>
 <div class="row">
 <%= render 'shared/sidebar' %>
 <h1>Statistics</h1>
-<ol>Things to show:</ol>
-  <li>Total number of books this month.</li>
-  <li>Breakdown total number of books this month by genre.</li>
-  <li>Breakdown total number of books this month by organization and by destination.</li>
-  <li>Attempt to graph this data over time.</li>
-</ol>
+<div class="span8">
+<p class="center">This month saw a total of <%= pluralize(current_user.total_books_for_this_month, 'books') %> ordered!</p>
+</br>
+<img src="<%= Gchart.pie(
+	:data => @data.values,
+	:labels => @data.keys,
+	:size => '600x200'
+	) %>"></img></br></br>
+<h2>Order breakdown</h2>
+<table class="table table-condensed">
+	<thead>
+		<th>Genre</th>
+		<th>Quantity</th>
+	</thead>
+	<tbody>
+		<% @data.each do |genre, quantity| %>
+		<tr>
+			<td><%= genre %></td>
+			<td><%= quantity %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>
 </div>

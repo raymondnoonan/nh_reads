@@ -46,14 +46,23 @@ class User < ActiveRecord::Base
 
   # Helper methods
 
-  # takes a month as input and returns an array with the first being a genre and the second being number of books
-  # ordered by ALL users this month
-  # WAY TO IMPLEMENT:
-    # 1. Ensure that month is of a proper input
-    # 2. Get all Line Items. Check that the eta's month is equal to the input month. If it is, add its quantity to
-    # the total.
-    # 3. Return the total
-  def books_for_month_of(month)
+  def books_for_this_month
+    a = Hash.new(0) # hash with key as titled genre and value of total number of books in that genre for this 
+                    # month with default value as zero
+    # pulls all line items with orders that have ETAs in this month in alphabetical order
+    line_items = LineItem.joins(:order).where("eta > ? AND eta < ?", Time.now.beginning_of_month, Time.now.end_of_month).order("genre ASC")
+    line_items.each do |li|
+      a["#{li.genre}"] += li.quantity
+    end
+    return a
+  end
+
+  def total_books_for_this_month
+    a = 0 # total number of books ordered this month
+    self.books_for_this_month.each_value do |genre_quantity|
+      a += genre_quantity     # iterates through each value in the hash, adding the quantity to the total
+    end
+    return a
   end
 
   def first_name

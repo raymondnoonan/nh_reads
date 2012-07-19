@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 before_filter :authenticate_user!
   def statistics
     @user = current_user
+    @data = current_user.books_for_this_month
   end
 
   def edit

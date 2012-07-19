@@ -93,7 +93,7 @@ describe "Order pages" do
       	  it { should have_content("Organization") }
       	  it { should have_content("Total Books") }
       	  it { should have_content("ETA") }
-      	  it { should have_content("Entered On") }
+      	  it { should have_content("Entered At") }
 
       	  it { should have_content(user.organization.titleize) }
       	  it { should have_content(order_not_complete.total_books.to_s) }

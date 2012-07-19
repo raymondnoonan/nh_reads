@@ -21,19 +21,14 @@
      i. Possible implementation: when a new user is created, if it is NOT a NHR account, then build a relationship
      between it and the NHR account in the create action.
      ii. This may not be necessary; one can just add some logic to the User model or controller:
-       j. If the user is an NHR user, pull ALL orders from the database. If its a non-NHR user, just pull the orders
+       j. If the user is an NHR user, pull ALL orders from the database and iterate through them accordingly. If its a non-NHR user, just pull the orders
        associated with that user.
+  d. For the new order page, have the organization option available for NHR users, but not available for non-NHR users
 
 3. Fully implmement printing feature
   a. Create label model, and have print button lead to a form to create labels?
-    i. If this route, somehow figure out validations so that the total quantity of books on all the labels associated with an order add up to the order's total quantity
+    i. If this route, somehow f1igure out validations so that the total quantity of books on all the labels associated with an order add up to the order's total quantity
     ii. If one can't implement this, figure it out so that the labels can be anthing, but you print on the screen what the line-items are. This would involve dynamically adding label items to the page
-
-4. Implement statistics page
-  a. Total number of books ordered this month
-    i. Breakdown by genre, organization, destination
-  b. Compare to previous months- use graph?
-    ii. This involves storing this sort of information over time
 
 # Medium Priority (should be done before final product)
 
@@ -49,12 +44,7 @@
 6. Implement client_side_validations gem
 7. Implement server-side validations of labels for specific orders
   a. Labels page is very similar to new orders page --> partial it out?
-
-
-## To-do this weekend
-
-Part 1, Javascript & jQuery: Getting Started with Javascript
-3 Chapters of "The Rails 3 Way"
+8. Graphs
 
 ## Goals for this week 
 6/17/2012: Install CanCan, implement non-NHR interface + authorization, Read Chapter 11 of Hartl tutorial

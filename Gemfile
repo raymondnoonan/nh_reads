@@ -13,6 +13,7 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'data_table'
 gem 'validates_timeliness', '~> 3.0.2'
+gem 'googlecharts'
 
 group :test do
 	gem 'rspec-rails'
