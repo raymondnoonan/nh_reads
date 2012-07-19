@@ -1,6 +1,6 @@
 # High Priority (Must be complete before first iteration)
 
-1. Optimize DataTables database --> MUST DO WITH BEN'S HELP
+1. Optimize DataTables database
   a. Ask Ben for help or try RailsCast again?
   b. Figure out how to use JSON with order functions and not just columns.
   c. Figure out how to use ActiveRecord queries with functions if it's possible

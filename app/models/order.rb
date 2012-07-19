@@ -28,6 +28,14 @@ class Order < ActiveRecord::Base
   validates_inclusion_of :completed, :in => [true, false]
   validates :destination, presence: true
 
+  def as_json
+    json = { :organization => self.organization, 
+             :destination => destination, 
+             :total_books => self.total_books, 
+             :eta => eta, 
+             :entered_at => created_at }
+  end
+
   def chronic_eta
   	self.eta
   end
