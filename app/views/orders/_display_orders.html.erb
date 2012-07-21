@@ -1,5 +1,5 @@
 <% if !current_user.all_orders_completed? %>
-    <table class="table table-bordered" id="orders" data-source="<%= orders_url(format: "json") %>">
+    <table class="table table-bordered"> <!-- if you want datatables, set id="orders" -->
       <thead>
         <tr>
           <th>Organization</th>  <!-- fix the sortable method -->
@@ -10,13 +10,14 @@
         </tr>
       </thead>
       <tbody>
-        <% current_user.orders.each do |order| %>
+        <% @orders.each do |order| %>
           <% unless order.completed? %>
             <%= render 'shared/table_body', :order => order %>
           <% end %>
         <% end %>
       </tbody>
     </table>
+    <%= will_paginate @orders %>
   <% else %>
     <p>No orders to display.</p>
   <% end %>

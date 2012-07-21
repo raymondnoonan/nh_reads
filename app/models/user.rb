@@ -41,8 +41,7 @@ class User < ActiveRecord::Base
   
   # Custom validations
   validates :name, presence: true
-  validates :organization, presence: true, uniqueness: true
-  ### TODO: Fix organization validation ###
+  validates :organization, presence: true, uniqueness: { case_sensitive: false }
 
   # Helper methods
 
@@ -58,7 +57,7 @@ class User < ActiveRecord::Base
   end
 
   def self.total_books_for_this_month
-    a = 0 # total number of books ordered this month
+    a = 0                     # total number of books ordered this month
     self.books_for_this_month.each_value do |genre_quantity|
       a += genre_quantity     # iterates through each value in the hash, adding the quantity to the total
     end

@@ -5,6 +5,7 @@ FactoryGirl.define do
     password "foobar"
     password_confirmation "foobar"
     organization "Yale University"
+    admin true
   end
 
   factory :order do

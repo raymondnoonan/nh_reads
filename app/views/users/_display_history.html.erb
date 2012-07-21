@@ -9,13 +9,14 @@
         </tr>
       </thead>
       <tbody>
-        <% current_user.orders.each do |order| %>
+        <% @orders.each do |order| %>
           <% if order.completed? %>
             <%= render 'shared/table_body', :order => order %>
           <% end %>
         <% end %>
       </tbody>
     </table>
+    <%= will_paginate @orders %>
   <% else %>
     <p>No orders to display.</p>
   <% end %>

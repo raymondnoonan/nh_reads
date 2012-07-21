@@ -2,11 +2,16 @@
 #   - Write test for a signed-in user attempting to visit another user's order index
 #   - Write test for a user's order index
 #   - Write test for user's order history
+#   - Write printing tests
+# 	- Write statistics tests
 
 require 'spec_helper'
 
 describe "Order pages" do 
 	let(:user) { FactoryGirl.create(:user) }
+	let(:user_not_admin) { FactoryGirl.create(:user, admin: false, organization: "ABCD") }
+
+	let!(:order_client) { FactoryGirl.create(:order, user: user_not_admin) }
 
 	let!(:order_not_complete) { FactoryGirl.create(:order, user: user) }
 	  let!(:line_item_1) { FactoryGirl.create(:line_item, order: order_not_complete) }
@@ -39,6 +44,29 @@ describe "Order pages" do
 	end
 
 	describe "signed in" do
+
+	  describe "as client" do
+	    before do
+	    	visit new_user_session_path
+	    	fill_in "Email", with: user_not_admin.email
+	    	fill_in "Password", with: user_not_admin.password
+	    	click_button "Sign in"
+	    end
+
+	    describe "attempting to print" do
+	    	before { visit print_order_path(order_client) }
+
+	 		it { should have_content "Your Pending Orders" }
+	    end
+
+	    describe "attempting to delete" do
+	    	before { visit delete_order_path(order_client) }
+
+	    	it { should have_content "Your Pending Orders" }
+	    end
+	  end
+
+	  describe "as admin" do
 	  before do
 	    visit new_user_session_path
 	    fill_in "Email", with: user.email
@@ -58,8 +86,6 @@ describe "Order pages" do
       		visit order_path(order_not_complete)
       		click_link "Print"
       	end
-
-      	# how to check if attribute changed?
       end
 
       describe "visiting an order show page" do
@@ -191,5 +217,6 @@ describe "Order pages" do
 		  	end
 		  end
 		end
+	end
 	end
 end

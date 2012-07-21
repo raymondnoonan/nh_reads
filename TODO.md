@@ -39,10 +39,8 @@
     i. Find an even lighter blue and lighter orange so everything looks very nice
   b. Use http://ie.microsoft.com/testdrive/graphics/cssgradientbackgroundmaker/default.html for CSS gradients
   c. Styling == LOW PRIORITY
-6. Implement client_side_validations gem
 7. Implement server-side validations of labels for specific orders
   a. Labels page is very similar to new orders page --> partial it out?
-8. Graphs
 
 ## Goals for this week 
 6/17/2012: Install CanCan, implement non-NHR interface + authorization, Read Chapter 11 of Hartl tutorial

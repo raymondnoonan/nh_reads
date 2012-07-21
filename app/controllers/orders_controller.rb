@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
 	before_filter :authenticate_user!
+	before_filter :verify_admin!, :only => [:toggle, :print, :delete]
+	include OrdersHelper # for verify_admin functionality
 
 	def toggle
 		@order = Order.find(params[:id])
@@ -15,7 +17,7 @@ class OrdersController < ApplicationController
 		@order = Order.find(params[:id])
 	end
 
-	def new      # for sidebar
+	def new                       # for sidebar
 		@order = Order.new        # for error messages
 		@autocomplete_items = LineItem::AllGenresTitled
 	end
@@ -45,13 +47,13 @@ class OrdersController < ApplicationController
 	end
 
 	def index
-		@orders = current_user.orders
+		@orders = current_user.orders.paginate(page: params[:page], :per_page => 10)
 	end
 
 	def delete
 		@order = Order.find(params[:id])
 		@order.destroy
 		flash[:success] = "Order deleted!"
-		redirect_to orders_path
+		redirect_to root_path
 	end
 end

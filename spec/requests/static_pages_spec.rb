@@ -10,19 +10,6 @@ describe "Static pages" do
 	describe "Home page" do
 		before { visit root_path }
 		let(:user) { FactoryGirl.create(:user) }
-		
-		describe "not signed in" do
-			describe "signing up" do
-				before { click_link "Sign up!" }
-
-				it { should have_selector('h1', text: 'Sign up') }
-
-				describe "a new user" do
-					# signing up a new user
-				end
-			end
-		end
-
 
 		describe "signed in" do
 		  before do
