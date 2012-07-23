@@ -4,12 +4,14 @@
 #   - Write test for user's order history
 #   - Write printing tests
 # 	- Write statistics tests
+#   - Figure out how to get selenium to accept google chrome drivers (user :js => true to get line item tests
+# 	  to work.)
 
 require 'spec_helper'
 
 describe "Order pages" do 
 	let(:user) { FactoryGirl.create(:user) }
-	let(:user_not_admin) { FactoryGirl.create(:user, admin: false, organization: "ABCD") }
+	let(:user_not_admin) { FactoryGirl.create(:user, admin: false, organization: "ABCD", email:"hi@hi.com") }
 
 	let!(:order_client) { FactoryGirl.create(:order, user: user_not_admin) }
 
@@ -64,6 +66,16 @@ describe "Order pages" do
 
 	    	it { should have_content "Your Pending Orders" }
 	    end
+
+	    describe "attempting to visit the order index page of another user" do
+	    	before { visit orders_path(user) }
+
+	    	it { should have_content "Your Pending Orders" }
+	    	it { should have_content(user_not_admin.organization.titleize) }
+	    	it { should have_content(user_not_admin.email) }
+	    	it { should_not have_content(user.organization.titleize) }
+	    	it { should_not have_content(user.email) }
+	    end
 	  end
 
 	  describe "as admin" do
@@ -84,9 +96,10 @@ describe "Order pages" do
         describe "printing an order" do
           before do
       		visit order_path(order_not_complete)
+      		order_not_complete.completed.should == false
       	  end
 
-      	  it "should be confirmed" do
+      	  it "should be confirmed after printing" do
             expect { click_link "Print" }.should change(order_not_complete, :completed).to(true)
           end
         end
@@ -104,13 +117,6 @@ describe "Order pages" do
 
       	  it { should have_content(line_item_3.quantity) }
       	  it { should have_content(line_item_4.quantity) }
-        end
-
-        describe "visiting an order edit page" do
-      	  # Tests to write:
-      	    # Editing each attribute individually
-      	    # Editing more than one attribute at the same time
-      	    # Editing attributes with correct and incorrect values
         end
 
         describe "visiting the orders index page" do

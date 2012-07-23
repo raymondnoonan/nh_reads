@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
+	include OrdersHelper # for verify_admin functionality
+	
 	before_filter :authenticate_user!
 	before_filter :verify_admin!, :only => [:toggle, :print, :delete]
-	include OrdersHelper # for verify_admin functionality
 
 	def toggle
 		@order = Order.find(params[:id])

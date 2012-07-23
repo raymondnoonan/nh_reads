@@ -12,13 +12,9 @@
     i. Define as_json for Order model
 
 2. Create non-NHR User interface
-  a. Do not allow non-NHR users to print orders
-    i. Implement CanCan do deal with this
   b. Create relationship between non-NHR and NHR users so that when a non-NHR user creates a new order, it shows up in
      the NHR pending orders page
-     i. Possible implementation: when a new user is created, if it is NOT a NHR account, then build a relationship
-     between it and the NHR account in the create action.
-     ii. This may not be necessary; one can just add some logic to the User model or controller:
+     i. One can just add some logic to the User model or controller:
        j. If the user is an NHR user, pull ALL orders from the database and iterate through them accordingly. If its a non-NHR user, just pull the orders
        associated with that user.
   d. For the new order page, have the organization option available for NHR users, but not available for non-NHR users
