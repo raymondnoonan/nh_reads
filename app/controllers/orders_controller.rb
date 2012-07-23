@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
 		@autocomplete_items = LineItem::AllGenresTitled
 	end
 
-	def create # for sidebar
+	def create
 		@order = current_user.orders.build(params[:order])
 		if @order.save
 		  flash[:success] = "Order created"
