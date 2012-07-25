@@ -6,6 +6,7 @@
 # 	- Write statistics tests
 #   - Figure out how to get selenium to accept google chrome drivers (user :js => true to get line item tests
 # 	  to work.)
+#   - Write helper method 
 
 require 'spec_helper'
 
@@ -13,7 +14,7 @@ describe "Order pages" do
 	let(:user) { FactoryGirl.create(:user) }
 	let(:user_not_admin) { FactoryGirl.create(:user, admin: false, organization: "ABCD", email:"hi@hi.com") }
 
-	let!(:order_client) { FactoryGirl.create(:order, user: user_not_admin) }
+	let!(:order_client) { FactoryGirl.create(:order, user: user_not_admin, destination: "BLABLA") }
 
 	let!(:order_not_complete) { FactoryGirl.create(:order, user: user, completed: false) }
 	  let!(:line_item_1) { FactoryGirl.create(:line_item, order: order_not_complete) }
@@ -76,6 +77,13 @@ describe "Order pages" do
 	    	it { should_not have_content(user.organization.titleize) }
 	    	it { should_not have_content(user.email) }
 	    end
+
+	    describe "orders shown on index page" do
+	    	before { visit orders_path(user_not_admin) }
+
+	    	it { should have_content "BLABLA" }
+	    	it { should_not have_content(order_not_complete.total_books.to_s) }
+	    end
 	  end
 
 	  describe "as admin" do
@@ -132,6 +140,7 @@ describe "Order pages" do
 
       	    it { should have_content(user.organization.titleize) }
       	    it { should have_content(order_not_complete.total_books.to_s) }
+      	    it { should have_content "BLABLA" }
       	  end
 
       	  describe "deleting orders" do
@@ -143,7 +152,7 @@ describe "Order pages" do
       	  end
         end
 
-	    describe "creating a new order" do
+	    describe "creating a new order", :js => true do
 		    before do 
 		  	  visit new_order_path
 		  	  click_link "Add Line Item"
@@ -218,7 +227,7 @@ describe "Order pages" do
 		  	  before do
 		  		  fill_in "Estimated Time of Arrival", with: "4/5/2020 3:32 AM"
 		  		  fill_in "Genre", with: "Science Fiction"
-		  		  fill_in "Quantity of Books", with: "5"
+		  		  fill_in "Quantity of Books", with: "5" 
 		  	  end
 
 		  	  it "should go through successfully" do

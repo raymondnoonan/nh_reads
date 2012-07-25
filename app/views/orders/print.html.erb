@@ -1,5 +1,16 @@
-<!-- TODO: write label-sorting algorithm, create label model, create label model validations -->
+<!-- Le Title -->
 <% provide(:title, 'Print Labels') %>
+
+<!--        Le JS
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('.editable').liveEdit();
+
+}); // end ready
+</script>                  -->
+
+<!-- Le ERB -->
 <% @order.line_items.each do |li| %>
 	<%= li.order.created_at.strftime("%b %d") %> - <%= li.order.organization %></br>
 	<%= li.quantity %> <%= li.genre %></br>

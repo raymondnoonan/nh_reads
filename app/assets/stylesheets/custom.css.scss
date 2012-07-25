@@ -10,6 +10,13 @@ $goodOrange: #ff7f3b;
   box-sizing: border-box;
 }
 
+/* jQuery custom in-line */
+
+/** Activated when one hovers over an editable field **/
+.editHover {
+  background-color: #E8F3FF;
+}
+
 /* universal */
 
 html {

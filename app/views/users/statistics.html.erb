@@ -5,7 +5,7 @@
 <%= render 'shared/sidebar' %>
 <h1>Statistics</h1>
 <div class="span8">
-<p class="center">This month saw a total of <%= pluralize(User::total_books_for_this_month, 'books') %> ordered!</p>
+<p class="center">This month saw a total of <%= pluralize(User.total_books_for_this_month, 'books') %> ordered!</p>
 </br>
 <img src="<%= Gchart.pie(
 	:data => @data.values,

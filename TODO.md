@@ -12,21 +12,20 @@
     i. Define as_json for Order model
 
 2. Create non-NHR User interface
-  b. Create relationship between non-NHR and NHR users so that when a non-NHR user creates a new order, it shows up in
-     the NHR pending orders page
-     i. One can just add some logic to the User model or controller:
-       j. If the user is an NHR user, pull ALL orders from the database and iterate through them accordingly. If its a non-NHR user, just pull the orders
-       associated with that user.
   d. For the new order page, have the organization option available for NHR users, but not available for non-NHR users
+     i. Will have to define a virtual attribute for organization that ||= 's to the current_user's organization
+  e. Order already has a virtual attribute defined --> use this.
 
 3. Fully implmement printing feature
   a. Create label model, and have print button lead to a form to create labels?
-    i. If this route, somehow f1igure out validations so that the total quantity of books on all the labels associated with an order add up to the order's total quantity
-    ii. If one can't implement this, figure it out so that the labels can be anthing, but you print on the screen what the line-items are. This would involve dynamically adding label items to the page
+    i. If this route, somehow figure out validations so that the total quantity of books on all the labels associated with an order add up to the order's total quantity
+    ii. If one can't implement this, figure it out so that the labels can be anything, but you print on the screen what the line-items are. This would involve dynamically adding label items to the page
 
 # Medium Priority (should be done before final product)
 
 4. Fix uniqueness validation
+5. Implement best-in-place for order show form and eliminate edit order form
+6. If it's past the ETA, color it red; if today is the ETA, color it yellow; if ETA is in the future, don't color it at all.
 
 # Low Priority (not necessary to complete)
 

@@ -39,16 +39,30 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :organization
   
-  # Custom validations
+  ######################################### Custom Validations #########################################################
   validates :name, presence: true
   validates :organization, presence: true, uniqueness: { case_sensitive: false }
 
-  # Helper methods
+  ########################################## Helper methods ############################################################
+
+  # DESCRIPTION: Returns all orders if the current user is an admin and only the orders associated with the current user
+  # otherwise. Used in the index action of the orders controller to determine which orders are shown.
+  # TODO: 
+  #      1. Bring the orders up batched, not all together at once.
+
+  def orders_for_index
+    if self.admin?
+      return Order.all
+    else
+      return self.orders
+    end
+  end
+
+  # DESCRIPTION: Returns a hash whose keys are all of the genres in alphabetical order and whose values are the total books
+  # ordered by all users of each genre for the current month.
 
   def self.books_for_this_month
-    a = Hash.new(0) # hash with key as titled genre and value of total number of books in that genre for this 
-                    # month with default value as zero
-    # pulls all line items with orders that have ETAs in this month in alphabetical order
+    a = Hash.new(0) # default value is zero
     line_items = LineItem.joins(:order).where("eta > ? AND eta < ?", Time.now.beginning_of_month, Time.now.end_of_month).order("genre ASC")
     line_items.each do |li|
       a["#{li.genre}"] += li.quantity
@@ -56,22 +70,26 @@ class User < ActiveRecord::Base
     return a
   end
 
+  # DESCRIPTION: Returns an integer that is the total number of books ordered this month.
   def self.total_books_for_this_month
-    a = 0                     # total number of books ordered this month
-    self.books_for_this_month.each_value do |genre_quantity|
-      a += genre_quantity     # iterates through each value in the hash, adding the quantity to the total
+    a = 0
+    books_for_this_month.each_value do |genre_quantity|
+      a += genre_quantity
     end
     return a
   end
 
+  # DESCRIPTION: Returns the first name of the given user.
   def first_name
     self.name.split.first
   end
 
+  # DESCRIPTION: Returns the last name of the given user.
   def last_name
     self.name.split.last
   end
 
+  # DESCRIPTION: Returns the total number of books ordered by the given user.
   def total_books
     n = 0
     self.orders.each do |order|
@@ -82,6 +100,7 @@ class User < ActiveRecord::Base
     return n
   end
 
+  # DESCRIPTION: Returns the total number of books of the specific genre ordered by the given user.
   def number_of(desired_genre)
     n = 0
     self.orders.each do |order|
@@ -94,6 +113,8 @@ class User < ActiveRecord::Base
     return n
   end
 
+  # DESCRIPTION: Affirms whether or not the user has any completed orders. Used in the order history view to determine
+  # whether or not to display any completed orders.
   def any_orders_completed?
     self.orders.each do |order|
       if order.completed?
@@ -103,6 +124,8 @@ class User < ActiveRecord::Base
     return false
   end
 
+  # DESCRIPTION: Affirms whether or not the user has completed all of his or her orders. Used in the order index view
+  # to determine whether or not to display any pending orders.
   def all_orders_completed?
     self.orders.each do |order|
       if order.completed == false

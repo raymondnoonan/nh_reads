@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 before_filter :authenticate_user!
   def statistics
-    @data = User::books_for_this_month
+    @data = User.books_for_this_month
   end
 
   def history

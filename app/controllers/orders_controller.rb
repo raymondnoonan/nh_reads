@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
 	end
 
 	def index
-		@orders = current_user.orders.paginate(page: params[:page], :per_page => 10)
+		@orders = current_user.orders_for_index.paginate(page: params[:page], :per_page => 10)
 	end
 
 	def delete
