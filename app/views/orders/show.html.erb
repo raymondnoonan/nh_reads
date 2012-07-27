@@ -22,11 +22,15 @@
 	<table class="table">
 	  <tbody>
 	  	<tr>
+	  		<td>Solicited by:</td>
+	  		<td><%= @order.solicitor %></td>
+	  	</tr>
+	  	<tr>
 	  		<td>Destination:</td>
 	  		<td><%= @order.destination %></td>
 	  	<tr>
 	      <td>Entered by:</td> 
-	      <td><%= @order.user.name %></td>
+	      <td><%= @order.user.name %> (<%= @order.user.organization.titleize %>)</td>
 	    </tr>
 	    <tr>
 	      <td>Created at:</td>

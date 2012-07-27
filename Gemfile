@@ -6,7 +6,6 @@ gem 'bcrypt-ruby'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'devise'
-gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 gem 'chronic'
 gem 'cocoon'
 gem 'bootstrap-sass'
@@ -22,6 +21,7 @@ group :test do
 	gem 'guard-spork'
 	gem 'spork'
 	gem 'factory_girl_rails'
+	gem "selenium-webdriver"
 end
 
 group :development do

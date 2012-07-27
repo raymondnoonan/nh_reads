@@ -36,25 +36,31 @@ class User < ActiveRecord::Base
     user.organization = organization.downcase
   end
 
-  # Setup accessible (or protected) attributes for your model
+  ######################## Setup accessible (or protected) attributes for your model ###################################
+
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :organization
   
   ######################################### Custom Validations #########################################################
+
   validates :name, presence: true
   validates :organization, presence: true, uniqueness: { case_sensitive: false }
 
+  #########################################      Scopes     ############################################################
+
+  # TODO: create scope to access current user in model for orders_for_index
+
   ########################################## Helper methods ############################################################
 
-  # DESCRIPTION: Returns all orders if the current user is an admin and only the orders associated with the current user
-  # otherwise. Used in the index action of the orders controller to determine which orders are shown.
+  # DESCRIPTION: Returns all non-completed orders if the current user is an admin and only the orders associated
+  # with the current userotherwise. Used in the index action of the orders controller to determine which orders are shown.
   # TODO: 
   #      1. Bring the orders up batched, not all together at once.
 
-  def orders_for_index
+  def orders_for_index  ## fix this method
     if self.admin?
-      return Order.all
+      return Order.where(:completed => false)
     else
-      return self.orders
+      return Order.where(:completed => false)
     end
   end
 

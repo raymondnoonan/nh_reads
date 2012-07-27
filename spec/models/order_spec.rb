@@ -23,9 +23,15 @@ describe Order do
   it { should respond_to(:user) }
   it { should respond_to(:line_items) }
   it { should respond_to(:completed) }
+  it { should respond_to(:solicitor) }
   its(:user) { should == user }
 
   it { should be_valid }
+
+  describe "when solicitor is not present" do
+    before { order.solicitor = "" }
+    it { should_not be_valid }
+  end
 
   describe "when destination is not present" do
     before { order.destination = "" }

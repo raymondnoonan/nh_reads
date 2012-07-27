@@ -12,6 +12,7 @@ FactoryGirl.define do
     eta Time.now
     user
     destination "Airport"
+    solicitor "University of Connecticut"
   end
 
   factory :line_item do

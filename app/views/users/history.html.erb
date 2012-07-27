@@ -2,7 +2,8 @@
 <div class="row">
 	  <%= render 'shared/sidebar' %>
   <h1><%= current_user.first_name %>'s Order History</h1>
+  <%= link_to "Delete All", delete_order_path(:destroy_all_completed => true) %>
   <div class="span8">
-	<%= render 'users/display_history' %>
+  	<%= render 'shared/display_orders' %>
   </div>
 </div>

@@ -1,0 +1,21 @@
+<% if @orders.any? %>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Organization</th>
+          <th>Destination</th>
+          <th>Total Books</th>
+          <th>ETA</th>
+          <th>Entered At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <%= render 'shared/table_body', :order => order %>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @orders %>
+  <% else %>
+    <p>No orders to display.</p>
+  <% end %>

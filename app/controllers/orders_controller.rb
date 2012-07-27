@@ -24,6 +24,9 @@ class OrdersController < ApplicationController
 	end
 
 	def create
+		# if the user is not an admin (i.e. didn't have the option to input a value for solicitor), make the
+		# solicitor the user himself.
+		params[:solicitor] ||= current_user.organization
 		@order = current_user.orders.build(params[:order])
 		if @order.save
 		  flash[:success] = "Order created"
@@ -48,13 +51,25 @@ class OrdersController < ApplicationController
 	end
 
 	def index
-		@orders = current_user.orders_for_index.paginate(page: params[:page], :per_page => 10)
+	  if current_user.admin?
+        @orders = Order.where(:completed => false).paginate(page: params[:page], :per_page => 5)
+      else
+        @orders = Order.where("completed = ? AND user_id = ?", false, current_user.id).paginate(page: params[:page], :per_page => 5)
+      end
 	end
 
 	def delete
-		@order = Order.find(params[:id])
-		@order.destroy
-		flash[:success] = "Order deleted!"
+		unless params[:destroy_all_completed]  # if the "destroy all completed orders" button wasn't clicked, just destroy
+		  @order = Order.find(params[:id])	   # the one order
+		  @order.destroy
+		  flash[:success] = "Order deleted!"
+		else								   # otherwise, destroy all of the orders that have been completed
+		  @completed_orders = Order.where(:completed => true)
+		  @completed_orders.each do |order|
+		  	order.destroy
+		  end
+		  flash[:success] = "All completed orders deleted!"
+		end
 		redirect_to root_path
 	end
 end

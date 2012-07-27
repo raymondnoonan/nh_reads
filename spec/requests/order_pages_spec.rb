@@ -152,7 +152,7 @@ describe "Order pages" do
       	  end
         end
 
-	    describe "creating a new order", :js => true do
+	    describe "creating a new order" do
 		    before do 
 		  	  visit new_order_path
 		  	  click_link "Add Line Item"
