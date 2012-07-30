@@ -51,19 +51,6 @@ class User < ActiveRecord::Base
 
   ########################################## Helper methods ############################################################
 
-  # DESCRIPTION: Returns all non-completed orders if the current user is an admin and only the orders associated
-  # with the current userotherwise. Used in the index action of the orders controller to determine which orders are shown.
-  # TODO: 
-  #      1. Bring the orders up batched, not all together at once.
-
-  def orders_for_index  ## fix this method
-    if self.admin?
-      return Order.where(:completed => false)
-    else
-      return Order.where(:completed => false)
-    end
-  end
-
   # DESCRIPTION: Returns a hash whose keys are all of the genres in alphabetical order and whose values are the total books
   # ordered by all users of each genre for the current month.
 
@@ -117,27 +104,5 @@ class User < ActiveRecord::Base
       end
     end
     return n
-  end
-
-  # DESCRIPTION: Affirms whether or not the user has any completed orders. Used in the order history view to determine
-  # whether or not to display any completed orders.
-  def any_orders_completed?
-    self.orders.each do |order|
-      if order.completed?
-        return true
-      end
-    end
-    return false
-  end
-
-  # DESCRIPTION: Affirms whether or not the user has completed all of his or her orders. Used in the order index view
-  # to determine whether or not to display any pending orders.
-  def all_orders_completed?
-    self.orders.each do |order|
-      if order.completed == false
-        return false
-      end
-    end
-    return true
   end
 end

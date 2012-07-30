@@ -13,7 +13,7 @@
 require 'spec_helper'
 
 describe "Line Items" do 
-	let!(:user) { FactoryGirl.create(:user) }
+	let(:user) { FactoryGirl.create(:user) }
 	let(:order) { FactoryGirl.create(:order, user: user) }
 	let(:line_item) { FactoryGirl.create(:line_item, order: order)}
 

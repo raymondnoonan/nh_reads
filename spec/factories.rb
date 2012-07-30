@@ -9,7 +9,7 @@ FactoryGirl.define do
   end
 
   factory :order do
-    eta Time.now
+    eta Time.now + (60 * 60 * 60 * 60 * 60)
     user
     destination "Airport"
     solicitor "University of Connecticut"
@@ -18,6 +18,11 @@ FactoryGirl.define do
   factory :line_item do
     quantity 5
     genre "Science Fiction"
+    order
+  end
+
+  factory :label do
+    note "Muahaha! This is a valid note!"
     order
   end
 end

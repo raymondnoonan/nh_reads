@@ -4,9 +4,6 @@
 #   - Write test for user's order history
 #   - Write printing tests
 # 	- Write statistics tests
-#   - Figure out how to get selenium to accept google chrome drivers (user :js => true to get line item tests
-# 	  to work.)
-#   - Write helper method 
 
 require 'spec_helper'
 
