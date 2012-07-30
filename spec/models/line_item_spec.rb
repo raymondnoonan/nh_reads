@@ -21,6 +21,7 @@ describe "Line Items" do
 
 	it { should respond_to(:quantity) }
 	it { should respond_to(:order_id) }
+	it { should respond_to(:label_id) }
 
 	it { should be_valid }
 

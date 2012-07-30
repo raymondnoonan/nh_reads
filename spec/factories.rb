@@ -19,6 +19,7 @@ FactoryGirl.define do
     quantity 5
     genre "Science Fiction"
     order
+    label
   end
 
   factory :label do

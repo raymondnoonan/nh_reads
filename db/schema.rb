@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120730181452) do
+ActiveRecord::Schema.define(:version => 20120730215058) do
 
   create_table "labels", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20120730181452) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
     t.string   "genre",      :default => ""
+    t.integer  "label_id"
   end
 
   add_index "line_items", ["order_id"], :name => "index_line_items_on_order_id"

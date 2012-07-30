@@ -18,6 +18,9 @@
   b. Use tooltip from bootstrap to show total books for each row
     i. Use jquery selector + hover
 
+5. Write label validations
+  a. Write tests for line_items and order relating to labels
+
 # Medium Priority (should be done before final product)
 
 4. Fix uniqueness validation
@@ -32,3 +35,4 @@
     i. Find an even lighter blue and lighter orange so everything looks very nice
   b. Use http://ie.microsoft.com/testdrive/graphics/cssgradientbackgroundmaker/default.html for CSS gradients
   c. Styling == LOW PRIORITY
+6. Write a script to create descriptive comments at the beginning of models or files
