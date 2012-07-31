@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
     user.organization = organization.downcase
   end
 
-  ######################## Setup accessible (or protected) attributes for your model ###################################
+  ######################## Setup accessible (or protected) attributes for the model ###################################
 
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :organization
   
@@ -72,12 +72,10 @@ class User < ActiveRecord::Base
     return a
   end
 
-  # DESCRIPTION: Returns the first name of the given user.
   def first_name
     self.name.split.first
   end
 
-  # DESCRIPTION: Returns the last name of the given user.
   def last_name
     self.name.split.last
   end

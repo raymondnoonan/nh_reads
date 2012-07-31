@@ -18,7 +18,6 @@ class Order < ActiveRecord::Base
 
   belongs_to :user
   has_many :line_items, dependent: :destroy
-  has_many :labels
   
   accepts_nested_attributes_for :line_items
 
@@ -51,7 +50,7 @@ class Order < ActiveRecord::Base
     return n
   end
 
-  def organization
+  def user_organization
     self.user.organization
   end
 end
