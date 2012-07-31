@@ -12,7 +12,7 @@ $(document).ready(function() {
 
 <!-- Le ERB -->
 <% @order.line_items.each do |li| %>
-	<%= li.order.created_at.strftime("%b %d") %> - <%= li.order.organization %></br>
+	<%= li.order.created_at.strftime("%b %d") %> - <%= li.order.user_organization %></br>
 	<%= li.quantity %> <%= li.genre %></br>
 	P/U <%= li.order.eta.strftime("%A %m/%d/%y") %>
 </br>

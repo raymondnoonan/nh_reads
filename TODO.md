@@ -12,12 +12,7 @@
     i. an order accepts_nested_attributes_for :labels
   c. Advantage to label model: saves labels for future use, and can use best_in_place to edit them on the spot.
   d. Implement foriegn key with Label-LineItem association
-
-4. Implmement DataTables with JSON again, but don't use any virtual attributes
-  a. instead, just show solicitor, destination, eta, created_on
-  b. Use tooltip from bootstrap to show total books for each row
-    i. Use jquery selector + hover
-
+  
 5. Write label validations
   a. Write tests for line_items and order relating to labels
 

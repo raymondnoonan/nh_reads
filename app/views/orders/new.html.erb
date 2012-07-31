@@ -29,9 +29,11 @@ $().ready(function() {
         <%= f.input :chronic_eta, :required => false, :label => "Estimated Time of Arrival", :as => :string, :input_html => { :class => "span2", autocomplete: "off" } %>
         <%= f.input :destination, :required => false, :input_html => { :class => "span2" } %>
       </div>
-      <div class="span3">
-        <%= f.input :solicitor, :required => false, :input_html => { :class => "span2" } %>
-      </div>
+      <% if current_user.admin? %>
+        <div class="span3">
+          <%= f.input :solicitor, :required => false, :input_html => { :class => "span2" } %>
+        </div>
+      <% end %>
       <div class="span8">
       <%= link_to_add_association f, :line_items, class: "btn btn-mini btn-success", id: "Add Line Item" do %>
         <i class="icon-plus-sign icon-white"></i>

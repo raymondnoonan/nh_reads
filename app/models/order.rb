@@ -28,7 +28,6 @@ class Order < ActiveRecord::Base
   validates :chronic_eta, presence: true
   validates_inclusion_of :completed, :in => [true, false]
   validates :destination, presence: true
-  validates :solicitor, presence: true
 
   def chronic_eta
   	self.eta

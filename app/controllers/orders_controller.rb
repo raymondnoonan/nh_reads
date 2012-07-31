@@ -26,7 +26,10 @@ class OrdersController < ApplicationController
 	def create
 		# if the user is not an admin (i.e. didn't have the option to input a value for solicitor), make the
 		# solicitor the user himself.
-		params[:solicitor] ||= current_user.organization
+		if params[:order][:solicitor].blank?
+			params[:order][:solicitor] = current_user.organization
+		end
+
 		@order = current_user.orders.build(params[:order])
 		if @order.save
 		  flash[:success] = "Order created"
