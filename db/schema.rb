@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120730215058) do
+ActiveRecord::Schema.define(:version => 20120731194035) do
 
   create_table "labels", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "note"
+    t.string   "note",       :default => ""
     t.integer  "order_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "line_items", :force => true do |t|
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20120730215058) do
     t.datetime "updated_at",                     :null => false
     t.boolean  "completed",   :default => false
     t.string   "destination", :default => ""
-    t.string   "solicitor"
+    t.string   "solicitor",   :default => ""
   end
 
   add_index "orders", ["user_id", "created_at"], :name => "index_orders_on_user_id_and_created_at"

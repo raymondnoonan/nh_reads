@@ -20,4 +20,9 @@ FactoryGirl.define do
     genre "Science Fiction"
     order
   end
+
+  factory :label do
+    note "Muahaha! This is a valid note!"
+    order
+  end
 end

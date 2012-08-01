@@ -225,10 +225,23 @@ describe "Order pages" do
 		  		  fill_in "Estimated Time of Arrival", with: "4/5/2020 3:32 AM"
 		  		  fill_in "Genre", with: "Science Fiction"
 		  		  fill_in "Quantity of Books", with: "5" 
+		  		  fill_in "Destination", with: "Forget Me Not Flower Shop"
 		  	  end
 
-		  	  it "should go through successfully" do
+		  	  describe "with solicitor" do
+		  	  	before do
+		  	  	  fill_in "Solicitor", with: "Princeton University"
+		  	  	end
+
+		  	    it "should go through successfully" do
 		  		  expect { click_button "Create Order" }.should change(Order, :count).by(1)
+		  	    end
+		  	  end
+
+		  	  describe "without solicitor" do
+		  	  	it "should go through successfully" do
+		  		  expect { click_button "Create Order" }.should change(Order, :count).by(1)
+		  	    end
 		  	  end
 		    end
 		  end

@@ -7,11 +7,12 @@
 
 3. Fully implmement printing feature
   a. Create label model, and have print button lead to a form to create labels?
-    ii. If one can't implement this, figure it out so that the labels can be anything, but you print on the screen what the line-items are. This would involve dynamically adding label items to the page
+    ii. If one can't implement this, figure it out so that the labels can be anything, but you print on the screen what the line-items are. This would invol ve dynamically adding label items to the page
   b. Check out cocoon example of double nested models with SimpleForm.
     i. an order accepts_nested_attributes_for :labels
   c. Advantage to label model: saves labels for future use, and can use best_in_place to edit them on the spot.
   d. Implement foriegn key with Label-LineItem association
+  e. Implement join table between labels, orders, and line_items?
   
 5. Write label validations
   a. Write tests for line_items and order relating to labels
