@@ -1,8 +1,7 @@
 # put all of this as_json logic in the model file
 
 class OrdersDatatable
-	delegate :params, :h, :link_to, :to => :@view
-
+	delegate :params, :h, :link_to, :order_path, :to => :@view
 	def initialize(view)
 		@view = view
 	end
@@ -21,8 +20,8 @@ private
 	def data
 		orders.map do |order|
 			[
-				link_to(order.organization, order_path(order)),
-				h(order.total_books),
+				link_to(order.solicitor, order_path(order)),
+				h(order.destination),
 				h(order.eta.strftime("%b %e, %Y")),
 				h(order.created_at.strftime("%b %e, %Y"))
 			]
@@ -34,15 +33,12 @@ private
 	end
 
 	def fetch_orders
-		if sort_column == "organization"
-			## insert logic for dealing with this here
-		end
 		orders = Order.order("#{sort_column} #{sort_direction}")
 		orders = orders.page(page).per_page(per_page)
 		if params[:sSearch].present?
 			### TODO: implement texticle here ###
-			orders = orders.where("total_books like :search or eta like :search or 
-				created_at like :search or organization like :search", search: "%#{params[:sSearch]}%" ) 
+			orders = orders.where("solicitor like :search or eta like :search or 
+				created_at like :search or destination like :search", search: "%#{params[:sSearch]}%" ) 
 		end
 		orders
 	end
@@ -52,16 +48,16 @@ private
 	end
 
 	def per_page
-		params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
+		params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 5
 	end
 
 	def sort_column
-		columns = %w[organization total_books eta created_at]
+		columns = %w[solicitor destination eta created_at]
 		columns[params[:iSortCol_0].to_i]
 	end
 
 	def sort_direction
-		params[:sSortDir_0] == "desc" ? "desc" : "asc"
+		params[:sSortDir_0] == "desc" ? "DESC" : "ASC"
 	end
 end
 

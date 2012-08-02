@@ -21,8 +21,6 @@ class Order < ActiveRecord::Base
   
   accepts_nested_attributes_for :line_items
 
-  default_scope order: 'orders.created_at DESC'
-
   validates :user_id, presence: true
   validates_date :eta, :on_or_after => Time.now
   validates :chronic_eta, presence: true

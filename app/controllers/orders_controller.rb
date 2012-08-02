@@ -54,11 +54,10 @@ class OrdersController < ApplicationController
 	end
 
 	def index
-	  if current_user.admin?
-        @orders = Order.where(:completed => false).paginate(page: params[:page], :per_page => 5)
-      else
-        @orders = Order.where("completed = ? AND user_id = ?", false, current_user.id).paginate(page: params[:page], :per_page => 5)
-      end
+	  respond_to do |format|
+	  	format.html
+	  	format.json { render json: OrdersDatatable.new(view_context) }
+	  end
 	end
 
 	def delete
