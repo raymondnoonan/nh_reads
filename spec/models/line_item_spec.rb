@@ -20,9 +20,9 @@ describe "Line Items" do
 	subject { line_item }
 
 	it { should respond_to(:quantity) }
-	it { should respond_to(:label) }
 	it { should respond_to(:order_id) }
 	it { should respond_to(:label_id) }
+	its(:order) { should == order }
 
 	it { should be_valid }
 

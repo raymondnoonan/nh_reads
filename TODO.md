@@ -17,6 +17,9 @@
 5. Write label validations
   a. Write tests for line_items and order relating to labels
 
+6. Screw all of the above. Just tidy up the statistics page (i.e. choose any previous month FOR WHICH THERE ARE ORDERS and display the data for that month)
+  a. Implement a print feature for the statistics page
+
 # Medium Priority (should be done before final product)
 
 4. Fix uniqueness validation

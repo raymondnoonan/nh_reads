@@ -24,7 +24,6 @@ describe Order do
   it { should respond_to(:line_items) }
   it { should respond_to(:completed) }
   it { should respond_to(:solicitor) }
-  it { should respond_to(:labels) }
   its(:user) { should == user }
 
   it { should be_valid }
