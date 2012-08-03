@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-before_filter :authenticate_user!
+  include OrdersHelper # for verify_admin functionality
+  before_filter :authenticate_user!
+  before_filter :verify_admin!, :only => [:statistics]
+
   def statistics
     @data = User.books_for_this_month
   end

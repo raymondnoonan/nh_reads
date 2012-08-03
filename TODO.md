@@ -1,15 +1,9 @@
 # High Priority (Must be complete before first iteration)
-1. Implement Texticle for Search
-
-2. Implement history v. index differentiation
-3. Implement admin v. non-admin differentiation
 
 6. Tidy up the statistics page (i.e. choose any previous month FOR WHICH THERE ARE ORDERS and display the data for that month)
   a. Implement a print feature for the statistics page
 
-7. Refactor OrdersDatatable, especially the fetch_orders method
-
-# Medium Priority (should be done before final product)
+# Medium priority (should be complete before final product)
 
 3. Fully implmement printing feature
   a. Create label model, and have print button lead to a form to create labels?
