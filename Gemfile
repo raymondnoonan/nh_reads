@@ -13,6 +13,7 @@ gem 'simple_form'
 gem 'data_table'
 gem 'validates_timeliness', '~> 3.0.2'
 gem 'googlecharts'
+gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 
 group :test do
 	gem 'rspec-rails'

@@ -5,7 +5,11 @@ before_filter :authenticate_user!
   end
 
   def history
-    @orders = current_user.orders.where(:completed => true).paginate(:per_page => 5, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.json { render json: OrdersDatatable.new(view_context) }
+    end
+  #  @orders = current_user.orders.where(:completed => true).paginate(:per_page => 5, :page => params[:page])
   end
 
   def edit

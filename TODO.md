@@ -1,9 +1,15 @@
 # High Priority (Must be complete before first iteration)
+1. Implement Texticle for Search
 
-1. Implement search
-  a. Implement Search form at top of table
-    i. Be able to search by solicitor, destination, total books, ETA, Entered at, genre
-  b. Add links to top of each column, allowing one to sort by that column
+2. Implement history v. index differentiation
+3. Implement admin v. non-admin differentiation
+
+6. Tidy up the statistics page (i.e. choose any previous month FOR WHICH THERE ARE ORDERS and display the data for that month)
+  a. Implement a print feature for the statistics page
+
+7. Refactor OrdersDatatable, especially the fetch_orders method
+
+# Medium Priority (should be done before final product)
 
 3. Fully implmement printing feature
   a. Create label model, and have print button lead to a form to create labels?
@@ -11,17 +17,8 @@
   b. Check out cocoon example of double nested models with SimpleForm.
     i. an order accepts_nested_attributes_for :labels
   c. Advantage to label model: saves labels for future use, and can use best_in_place to edit them on the spot.
-  d. Implement foriegn key with Label-LineItem association
-  e. Implement join table between labels, orders, and line_items?
-  
-5. Write label validations
-  a. Write tests for line_items and order relating to labels
-
-6. Screw all of the above. Just tidy up the statistics page (i.e. choose any previous month FOR WHICH THERE ARE ORDERS and display the data for that month)
-  a. Implement a print feature for the statistics page
-
-# Medium Priority (should be done before final product)
-
+    d. Implement foriegn key with Label-LineItem association
+    e. Implement join table between labels, orders, and line_items?
 4. Fix uniqueness validation
 5. Implement best-in-place for order show form and eliminate edit order form
 6. If it's past the ETA, color it red; if today is the ETA, color it yellow; if ETA is in the future, don't color it at all.

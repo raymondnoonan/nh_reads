@@ -1,7 +1,7 @@
 # put all of this as_json logic in the model file
 
 class OrdersDatatable
-	delegate :params, :h, :link_to, :order_path, :to => :@view
+	delegate :params, :h, :link_to, :order_path, :current_user, :to => :@view
 	def initialize(view)
 		@view = view
 	end
@@ -33,12 +33,22 @@ private
 	end
 
 	def fetch_orders
-		orders = Order.order("#{sort_column} #{sort_direction}")
+		if current_user.admin?  # if the current user is an admin, fetch all of the orders
+		  if params[:action] == "index"
+		    orders = Order.where(:completed => false).order("#{sort_column} #{sort_direction}")
+		  else
+		  	orders = Order.where(:completed => true).order("#{sort_column} #{sort_direction}")
+		  end
+		else                  # if the current user is not an admin, only fetch the orders that correspond to that user's id
+		  if params[:action] == "index"
+		    orders = Order.where("completed = ? AND user_id = ?", false, current_user.id).order("#{sort_column} #{sort_direction}")
+		  else
+		  	orders = Order.where("completed = ? AND user_id = ?", true, current_user.id).order("#{sort_column} #{sort_direction}")
+		  end
+		end
 		orders = orders.page(page).per_page(per_page)
 		if params[:sSearch].present?
-			### TODO: implement texticle here ###
-			orders = orders.where("solicitor like :search or eta like :search or 
-				created_at like :search or destination like :search", search: "%#{params[:sSearch]}%" ) 
+			orders = orders.search(params[:sSearch]) 
 		end
 		orders
 	end
