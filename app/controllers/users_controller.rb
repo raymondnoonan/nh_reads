@@ -4,9 +4,10 @@ class UsersController < ApplicationController
   before_filter :verify_admin!, :only => [:statistics]
 
   def statistics
+    params[:month] ||= Time.now.strftime("%b %Y")
+    parsed_month = Chronic.parse(params[:month])
     @current_orders = User.months_with_book_orders
-    params[:month] ||= "Hello"
-    @data = User.books_for_this_month
+    @data = User.books_for_month(parsed_month)
   end
 
   def history

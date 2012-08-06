@@ -62,9 +62,9 @@ class User < ActiveRecord::Base
   # DESCRIPTION: Returns a hash whose keys are all of the genres in alphabetical order and whose values are the total books
   # ordered by all users of each genre for the current month.
 
-  def self.books_for_this_month
+  def self.books_for_month(time)
     a = Hash.new(0) # default value is zero
-    line_items = LineItem.joins(:order).where("eta > ? AND eta < ?", Time.now.beginning_of_month, Time.now.end_of_month).order("genre ASC")
+    line_items = LineItem.joins(:order).where("eta > ? AND eta < ?", time.beginning_of_month, time.end_of_month).order("genre ASC")
     line_items.each do |li|
       a["#{li.genre}"] += li.quantity
     end
@@ -72,9 +72,9 @@ class User < ActiveRecord::Base
   end
 
   # DESCRIPTION: Returns an integer that is the total number of books ordered this month.
-  def self.total_books_for_this_month
+  def self.total_books_for_month(time)
     a = 0
-    books_for_this_month.each_value do |genre_quantity|
+    books_for_month(time).each_value do |genre_quantity|
       a += genre_quantity
     end
     return a
