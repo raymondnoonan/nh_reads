@@ -73,11 +73,11 @@ class User < ActiveRecord::Base
   end
 
   def first_name
-    self.name.split.first
+    self.name.split.first if name
   end
 
   def last_name
-    self.name.split.last
+    self.name.split.last if name
   end
 
   # DESCRIPTION: Returns the total number of books ordered by the given user.
