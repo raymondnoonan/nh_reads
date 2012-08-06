@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :confirmable, :registerable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :orders, dependent: :destroy
 
@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
     user.email = email.downcase
     user.organization = organization.downcase
   end
+
+  # NOTE: add :confirmable to devise if you want to confirm users
 
   ######################## Setup accessible (or protected) attributes for the model ###################################
 
@@ -44,10 +46,6 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   validates :organization, presence: true, uniqueness: { case_sensitive: false }
-
-  #########################################      Scopes     ############################################################
-
-  # TODO: create scope to access current user in model for orders_for_index
 
   ########################################## Helper methods ############################################################
 

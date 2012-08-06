@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include OrdersHelper # for verify_admin functionality
-  before_filter :authenticate_user!, :only => [:statistics, :history, :edit, :update]
+  before_filter :authenticate_user!
   before_filter :verify_admin!, :only => [:statistics]
 
   def statistics
