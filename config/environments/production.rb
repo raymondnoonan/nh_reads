@@ -13,6 +13,9 @@ Nhreads::Application.configure do
     :domain         => ENV['SENDGRID_DOMAIN']
   }
 
+  # Getting devise to work on Heroku
+  config.assets.initialize_on_precompile = false
+
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
