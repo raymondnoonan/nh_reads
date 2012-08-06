@@ -66,11 +66,7 @@ describe User do
     let!(:newer_order) do
       FactoryGirl.create(:order, user: user, created_at:1.hour.ago)
     end
-
-    it "should have the correct orders in the right order" do  # checks order of orders
-      user.orders.should == [newer_order, older_order]
-    end
-
+    
     it "should destroy associated orders on deletion" do
       orders = user.orders
       user.destroy

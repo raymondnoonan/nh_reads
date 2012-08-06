@@ -1,6 +1,6 @@
 <tr>
 <!-- TODO: Style table further with blue and orange -->
-  <td><%= link_to order.solicitor, order_path(order) %></td>
+  <td><%= link_to order.solicitor.titleize, order_path(order) %></td>
   <td><%= order.destination %></td>
   <td><%= order.eta.strftime("%b %e, %Y") %></td>
   <td><%= order.created_at.strftime("%b %e, %Y") %></td>

@@ -49,6 +49,16 @@ class User < ActiveRecord::Base
 
   ########################################## Helper methods ############################################################
 
+  def months_with_book_orders
+    a = []
+    orders = Order.joins(:line_items).where("quantity > 0").order("eta DESC")
+    orders.each do |order|
+      eta = order.eta.strftime("%b %Y")
+      a.append(eta)
+    end
+    return a.uniq
+  end
+
   # DESCRIPTION: Returns a hash whose keys are all of the genres in alphabetical order and whose values are the total books
   # ordered by all users of each genre for the current month.
 

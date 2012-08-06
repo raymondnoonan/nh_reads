@@ -130,8 +130,8 @@ describe "Order pages" do
       	  describe "with pending orders" do
       	    it { should have_selector('h1', text: "Your Pending Orders") }
 
-      	    it { should have_content("Organization") }
-      	    it { should have_content("Total Books") }
+      	    it { should have_content("Solicitor") }
+      	    it { should have_content("Destination") }
       	    it { should have_content("ETA") }
       	    it { should have_content("Entered At") }
 
