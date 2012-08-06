@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
 
   ######################## Setup accessible (or protected) attributes for the model ###################################
 
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :organization
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :organization, :name
   
   ######################################### Custom Validations #########################################################
 
