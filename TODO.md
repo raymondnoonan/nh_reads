@@ -2,6 +2,7 @@
 
 6. Tidy up the statistics page (i.e. choose any previous month FOR WHICH THERE ARE ORDERS and display the data for that month)
   a. Implement a print feature for the statistics page
+7. Create statistics model
 
 # Medium priority (should be complete before final product)
 

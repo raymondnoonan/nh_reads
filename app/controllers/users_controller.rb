@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_filter :verify_admin!, :only => [:statistics]
 
   def statistics
+    @current_orders = User.months_with_book_orders
+    params[:month] ||= "Hello"
     @data = User.books_for_this_month
   end
 

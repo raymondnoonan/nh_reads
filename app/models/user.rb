@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
 
   ########################################## Helper methods ############################################################
 
-  def months_with_book_orders
+  def self.months_with_book_orders
     a = []
     orders = Order.joins(:line_items).where("quantity > 0").order("eta DESC")
     orders.each do |order|

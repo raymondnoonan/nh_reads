@@ -1,17 +1,20 @@
 <% require 'gchart' %>
-
 <% provide(:title, 'Statistics') %>
 <div class="row">
 <%= render 'shared/sidebar' %>
 <h1>Statistics</h1>
 <div class="span8">
+<%= form_tag(statistics_user_path, :method => 'get', :class => "well form-inline") do %>
+  <%= select_tag("month", options_for_select(@current_orders)) %>
+  <%= submit_tag 'Select', :class => "btn btn-primary" %>
+<% end %>
 <p class="center">This month saw a total of <%= pluralize(User.total_books_for_this_month, 'books') %> ordered!</p>
 </br>
 <img src="<%= Gchart.pie(
 	:data => @data.values,
 	:labels => @data.keys,
 	:size => '600x200'
-	) %>"></img></br></br>
+	) %>"></img></br></br></br>
 <h2>Order breakdown</h2>
 <table class="table table-condensed">
 	<thead>
