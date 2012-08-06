@@ -1,14 +1,20 @@
-<h2>Sign up</h2>
+<h1>Sign up today!</h1>
+<blockquote>
+  <p>Remember that they are only books; the people are what are important.</p>
+  <small>Christine Alexander, Founder, New Haven Reads</small>
+</blockquote>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
-<!-- TODO: Put in organization name, and validate Organization name uniqueness -->
+<!-- TODO: Validate Organization name uniqueness correctly -->
+<!-- TODO: Implement tooltips for form inputs -->
+<!-- TODO: show errors on problem with signing up --> 
   <div class="form-inputs">
-  	<%= f.input :organization, :required => true %>
-    <%= f.input :email, :required => true, :autofocus => true %>
-    <%= f.input :password, :required => true %>
-    <%= f.input :password_confirmation, :required => true %>
+  	<%= f.input :organization, :required => false %>
+    <%= f.input :email, :required => false, :autofocus => true %>
+    <%= f.input :password, :required => false %>
+    <%= f.input :password_confirmation, :required => false %>
   </div>
 
   <div class="form-actions">

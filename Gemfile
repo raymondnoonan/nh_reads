@@ -14,6 +14,7 @@ gem 'data_table'
 gem 'validates_timeliness', '~> 3.0.2'
 gem 'googlecharts'
 gem 'texticle', '~> 2.0', :require => 'texticle/rails'
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 
 group :test do
 	gem 'rspec-rails'
@@ -37,8 +38,6 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-
-  gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 end
 
 gem 'jquery-rails'
