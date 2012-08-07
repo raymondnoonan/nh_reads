@@ -1,7 +1,5 @@
-# put all of this as_json logic in the model file
-
 class OrdersDatatable
-	delegate :params, :h, :link_to, :order_path, :current_user, :to => :@view
+	delegate :params, :h, :link_to, :order_path, :titleize, :current_user, :to => :@view
 	def initialize(view)
 		@view = view
 	end
@@ -20,7 +18,7 @@ private
 	def data
 		orders.map do |order|
 			[
-				link_to(order.solicitor, order_path(order)),
+				link_to(order.solicitor.titleize, order_path(order)),
 				h(order.destination),
 				h(order.eta.strftime("%b %e, %Y")),
 				h(order.created_at.strftime("%b %e, %Y"))
