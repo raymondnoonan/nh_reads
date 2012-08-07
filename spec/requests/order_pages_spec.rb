@@ -65,20 +65,9 @@ describe "Order pages" do
 	    	it { should have_content "Your Pending Orders" }
 	    end
 
-	    describe "attempting to visit the order index page of another user" do
-	    	before { visit orders_path(user) }
-
-	    	it { should have_content "Your Pending Orders" }
-	    	it { should have_content(user_not_admin.organization.titleize) }
-	    	it { should have_content(user_not_admin.email) }
-	    	it { should_not have_content(user.organization.titleize) }
-	    	it { should_not have_content(user.email) }
-	    end
-
 	    describe "orders shown on index page" do
 	    	before { visit orders_path(user_not_admin) }
 
-	    	it { should have_content "BLABLA" }
 	    	it { should_not have_content(order_not_complete.total_books.to_s) }
 	    end
 	  end
