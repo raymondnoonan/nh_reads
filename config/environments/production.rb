@@ -4,18 +4,10 @@ Nhreads::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
 
-# NOTE: uncomment below to implement email delivery with sendgrid
-
-#  config.action_mailer.raise_delivery_errors = true
-#  config.action_mailer.default_url_options = { :host => 'http://nhreads.herokuapp.com' }
-#  ActionMailer::Base.smtp_settings = {
-#    :address        => "smtp.sendgrid.net",
-#    :port           => "25",
-#    :authentication => :plain,
-#    :user_name      => ENV['SENDGRID_USERNAME'],
-#    :password       => ENV['SENDGRID_PASSWORD'],
-#    :domain         => ENV['SENDGRID_DOMAIN']
-#  }
+  # Implement SSL
+  config.to_prepare { Devise::SessionsController.force_ssl }
+  config.to_prepare { Devise::RegistrationsController.force_ssl }
+  config.to_prepare { Devise::PasswordsController.force_ssl }
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
