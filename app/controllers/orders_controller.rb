@@ -2,19 +2,16 @@ class OrdersController < ApplicationController
 	include OrdersHelper # for verify_admin functionality
 	
 	before_filter :authenticate_user!
-	before_filter :verify_admin!, :only => [:toggle, :print, :delete]
+	before_filter :verify_admin!, :only => [:toggle, :delete]
 
 	def toggle
 		@order = Order.find(params[:id])
 		@order.toggle!(:completed)
-		redirect_to print_order_path(@order)
+		flash[:success] = "Order confirmed!"
+		redirect_to order_path(@order)
 	end
 
 	def show
-		@order = Order.find(params[:id])
-	end
-
-	def print
 		@order = Order.find(params[:id])
 	end
 
