@@ -36,8 +36,6 @@ class User < ActiveRecord::Base
     user.organization = organization.downcase
   end
 
-  # NOTE: add :confirmable to devise if you want to confirm users
-
   ######################## Setup accessible (or protected) attributes for the model ###################################
 
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :organization, :name

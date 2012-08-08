@@ -1,10 +1,13 @@
+<% provide :title, 'Sign up' %>
+
 <h1>Sign up today!</h1>
-<blockquote>
+<blockquote class="center">
   <p>Remember that they are only books; the people are what are important.</p>
   <small>Christine Alexander, Founder, New Haven Reads</small>
 </blockquote>
 
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => 
+{ :class => 'form-horizontal' }) do |f| %>
   <%= f.error_notification %>
 
 <!-- TODO: Validate Organization name uniqueness correctly -->
