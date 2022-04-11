@@ -1,9 +1,12 @@
 GIT
-  remote: git://github.com/rweng/jquery-datatables-rails.git
-  revision: 8e38453e001049b50b5ac5eae65992cfd2782328
+  remote: https://github.com/rweng/jquery-datatables-rails.git
+  revision: d486b31b192a2924b1913e080ad23460e6b96d31
   specs:
-    jquery-datatables-rails (1.10.0)
+    jquery-datatables-rails (3.4.0)
+      actionpack (>= 3.1)
       jquery-rails
+      railties (>= 3.1)
+      sass-rails
 
 GEM
   remote: https://rubygems.org/
@@ -105,11 +108,15 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
+    mini_portile2 (2.8.0)
     multi_json (1.3.6)
-    nokogiri (1.5.5)
+    nokogiri (1.13.4)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     orm_adapter (0.3.0)
     pg (0.14.0)
     polyglot (0.3.3)
+    racc (1.6.0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
